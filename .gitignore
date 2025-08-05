@@ -1,0 +1,33 @@
+# Archivos de objetos
+*.o
+
+# Ejecutables
+cub3d
+cub3D
+*.out
+*.exe
+
+# minilibx-linux (no debe subirse al repo)
+minilibx-linux/
+
+# .vscode (configuración del editor local)
+.vscode/
+
+# Archivos de depuración o core dumps
+core
+*.core
+
+# Archivos temporales de editores
+*~
+*.swp
+*.swo
+.DS_Store
+
+# Archivos de Make
+Makefile~
+
+# Archivos de respaldo
+*.bak
+
+# Carpetas o archivos de pruebas temporales
+tmp/
