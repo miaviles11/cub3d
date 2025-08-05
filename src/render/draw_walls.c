@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_walls.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/05 20:47:49 by miaviles          #+#    #+#             */
+/*   Updated: 2025/08/05 20:47:57 by miaviles         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 static void	put_pixel(t_img *img, int x, int y, int color)
@@ -35,6 +47,7 @@ void	draw_walls(t_cub *c, int x, t_ray *r)
 	int		line_h;
 	int		start;
 	int		end;
+	int		jump_offset;
 	double	step;
 	double	tex_pos;
 
@@ -42,15 +55,18 @@ void	draw_walls(t_cub *c, int x, t_ray *r)
 	if (line_h < 1)
 		line_h = 1;
 
-	start = -line_h / 2 + WIN_H / 2;
+	// Aplicar el mismo offset de salto que al suelo/techo
+	jump_offset = (int)(c->player.z_offset * JUMP_VISUAL_MULTIPLIER);
+	
+	start = -line_h / 2 + WIN_H / 2 + jump_offset;
 	if (start < 0)
 		start = 0;
-	end = line_h / 2 + WIN_H / 2;
+	end = line_h / 2 + WIN_H / 2 + jump_offset;
 	if (end >= WIN_H)
 		end = WIN_H - 1;
 
 	step = (double)TEX_SIZE / line_h;
-	tex_pos = (start - WIN_H / 2 + line_h / 2) * step;
+	tex_pos = (start - WIN_H / 2 - jump_offset + line_h / 2) * step;
 
 	draw_slice(c, x, r, start, end, step, tex_pos);
 }

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:09:49 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:19:10 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:42:47 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ int	movement_update(t_cub *c)
 	if (fabs(total_dx) > EPS || fabs(total_dy) > EPS)
 		subdiv_move(c, total_dx, total_dy);
 	handle_rotation(c);
+	update_jump(c);
 	return (0);
 }

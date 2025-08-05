@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:27:10 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:41:44 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int     out_of_bounds(t_map *m, int y, int x);
 /* -------------------------------------------------------------------------- */
 /*  Game logic physics                                                              */
 /* -------------------------------------------------------------------------- */
+void    init_jump(t_player *player);
+void    update_jump(t_cub *c);
 int		is_wall(t_cub *c, double x, double y);
 void	wall_slide_move(t_cub *c, double dx, double dy);
 double	find_safe_distance(t_cub *c, double start_x, double start_y, double dx, double dy);

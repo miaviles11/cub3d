@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:50:59 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/17 17:51:01 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:42:22 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	init_player(t_cub *cub)
 				cub->map.grid[y][x] = '0';
 				cub->player.dir = (t_vec){(c == 'E') - (c == 'W'),
 					(c == 'S') - (c == 'N')};
+				init_jump(&cub->player);
 				set_plane(&cub->player);
 				return (0);
 			}

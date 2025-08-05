@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 18:56:20 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 19:29:46 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:48:08 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@
 #define MAX_MOVE_STEP 0.05
 #define EPS 1e-6
 
+/* Jump physics ------------------------------------------------------------ */
+#define JUMP_INITIAL_SPEED    0.25
+#define GRAVITY              0.015
+#define JUMP_VISUAL_MULTIPLIER  40
+
 /* Minimap */
 #define MINIMAP_SIZE     150
 #define MINIMAP_PADDING  10
@@ -48,6 +53,7 @@
 #  define KEY_ESC   53
 #  define KEY_LEFT  123
 #  define KEY_RIGHT 124
+#  define KEY_SPACE 49
 # else
 #  define KEY_W     119
 #  define KEY_A     97
@@ -56,6 +62,7 @@
 #  define KEY_ESC   65307
 #  define KEY_LEFT  65361
 #  define KEY_RIGHT 65363
+#  define KEY_SPACE 32
 # endif
 
 #endif

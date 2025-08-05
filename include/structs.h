@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:34:05 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/17 17:34:14 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:36:56 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ typedef struct s_player
 	t_vec	pos;
 	t_vec	dir;
 	t_vec	plane;
+	double	z_offset;
+	double	jump_speed;
+	int		is_jumping;
 }	t_player;
 
 typedef struct s_keys
@@ -73,6 +76,7 @@ typedef struct s_keys
 	int	d;
 	int	left;
 	int	right;
+	int	space;
 }	t_keys;
 
 typedef struct s_cub
