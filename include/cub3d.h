@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/29 17:21:20 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:27:10 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,16 @@ int     is_walk(char c);
 int     out_of_bounds(t_map *m, int y, int x);
 
 /* -------------------------------------------------------------------------- */
-/*  Game logic                                                                */
+/*  Game logic physics                                                              */
 /* -------------------------------------------------------------------------- */
-int		movement_update(t_cub *cub);
-void	try_smooth_move(t_cub *c, double dx, double dy);
 int		is_wall(t_cub *c, double x, double y);
+void	wall_slide_move(t_cub *c, double dx, double dy);
+double	find_safe_distance(t_cub *c, double start_x, double start_y, double dx, double dy);
+void	apply_wall_sliding(t_cub *c, double dx, double dy);
+void	subdiv_move(t_cub *c, double total_dx, double total_dy);
+void	try_smooth_move(t_cub *c, double dx, double dy);
+void	move(t_cub *c, double dx, double dy);
+int		movement_update(t_cub *c);
 
 /* -------------------------------------------------------------------------- */
 /*  Rendering                                                                 */
@@ -85,6 +90,12 @@ void    draw_floor_ceil(t_cub *cub);
 void    raycaster(t_cub *cub);
 int     tex_sample(t_cub *cub, int id, int x, int y);
 void	draw_walls(t_cub *c, int x, t_ray *r);
+void	put_pixel_minimap(t_cub *c, int x, int y, int color);
+void	draw_minimap_border(t_cub *c);
+int		get_tile_color(t_cub *c, int map_x, int map_y);
+void	draw_minimap_content(t_cub *c);
+void	draw_minimap(t_cub *c);
+void	draw_player_on_minimap(t_cub *c);
 
 /* -------------------------------------------------------------------------- */
 /*  Utils (error / free)                                                      */

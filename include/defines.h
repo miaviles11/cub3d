@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 18:56:20 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/29 17:35:30 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/05 19:29:46 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,21 @@
 
 #define COLLISION_RADIUS 0.15
 #define MIN_MOVE_DISTANCE 0.015
-#define MOVE_SPEED 0.03
+#define MOVE_SPEED 0.05
 #define ROT_SPEED 0.05
+#define MAX_MOVE_STEP 0.05
 #define EPS 1e-6
+
+/* Minimap */
+#define MINIMAP_SIZE     150
+#define MINIMAP_PADDING  10
+#define COLOR_WALL       0x4A4A4A  /* Piedra gris oscuro */
+#define COLOR_SPACE      0x1A1A0E  /* Suelo de mazmorra */
+#define COLOR_DOOR       0x8B4513  /* Madera de roble */
+#define COLOR_SPRITE     0xFFD700  /* Oro (tesoros/objetos) */
+#define COLOR_PLAYER     0xFF4500  /* Antorcha naranja */
+#define COLOR_VISITED    0x2F2F1F  /* Suelo pisado */
+#define COLOR_BORDER     0xFFFFFF  /* Marco de madera */
 
 /* keycodes (X11 vs macOS) ------------------------------------------------- */
 # ifdef __APPLE__
