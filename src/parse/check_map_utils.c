@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:28:32 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/17 18:28:36 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:41:30 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	is_walk(char c)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == 'D');
 }
 
 int	out_of_bounds(t_map *m, int y, int x)

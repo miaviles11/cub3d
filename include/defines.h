@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 18:56:20 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:48:08 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:57:19 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 #  define KEY_LEFT  123
 #  define KEY_RIGHT 124
 #  define KEY_SPACE 49
+#  define KEY_E     14      // NUEVA: tecla E para interactuar con puertas
 # else
 #  define KEY_W     119
 #  define KEY_A     97
@@ -63,6 +64,7 @@
 #  define KEY_LEFT  65361
 #  define KEY_RIGHT 65363
 #  define KEY_SPACE 32
+#  define KEY_E     101
 # endif
 
 #endif

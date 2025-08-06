@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:34:05 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:36:56 by miaviles         ###   ########.fr       */
+/*   Created: 2025/08/06 17:35:43 by miaviles          #+#    #+#             */
+/*   Updated: 2025/08/06 17:35:47 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,20 @@ typedef struct s_player
 	int		is_jumping;
 }	t_player;
 
+typedef struct s_door
+{
+	t_vec	pos;
+	int		is_open;
+	char	original;
+}	t_door;
+
+typedef struct s_door_list
+{
+	t_door	*doors;
+	int		count;
+	int		capacity;
+}	t_door_list;
+
 typedef struct s_keys
 {
 	int	w;
@@ -77,20 +91,22 @@ typedef struct s_keys
 	int	left;
 	int	right;
 	int	space;
+	int	e;
 }	t_keys;
 
 typedef struct s_cub
 {
-	void		*mlx;
-	void		*win;
-	t_img		screen;
-	t_texture	textures[4];
-	t_map		map;
-	t_player	player;
-	t_keys		keys;
-	int			floor_color;
-	int			ceil_color;
-	char		*map_dir;
+	void			*mlx;
+	void			*win;
+	t_img			screen;
+	t_texture		textures[5];
+	t_map			map;
+	t_player		player;
+	t_keys			keys;
+	t_door_list		doors;
+	int				floor_color;
+	int				ceil_color;
+	char			*map_dir;
 }	t_cub;
 
 #endif

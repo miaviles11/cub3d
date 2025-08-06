@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:41:44 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:58:19 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,8 @@ t_vec   vec_norm(t_vec v);
 double  ft_abs_d(double v);
 double  ft_max_d(double a, double b);
 double  ft_min_d(double a, double b);
+
+int		parse_doors(t_cub *cub);
+void	handle_door_interaction(t_cub *cub);
 
 #endif

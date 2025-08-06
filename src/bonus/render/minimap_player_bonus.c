@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap_player.c                              :+:      :+:    :+:   */
+/*   minimap_player_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 20:11:56 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:13:23 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:44:57 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
 void	draw_player_on_minimap(t_cub *c)
 {

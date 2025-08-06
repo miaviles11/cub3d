@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/06 16:37:00 by miaviles          #+#    #+#             */
+/*   Updated: 2025/08/06 16:42:22 by miaviles         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 /* store a duplicate into the list, stripping trailing newlines ------------ */
@@ -45,7 +57,6 @@ static int	process_meta(t_cub *cub, t_list *node, const char *path)
 	{
 		str = (char *)node->content;
 		s = skip_spaces(str);
-
 		if ((*s == 'N' || *s == 'S' || *s == 'W' || *s == 'E')
 			&& parse_texture_line(cub, s))
 			return (-1);
@@ -73,7 +84,7 @@ int	parse_scene(t_cub *cub, const char *path)
 		return (-1);
 	lst = NULL;
 	if (read_file(fd, &lst) || process_meta(cub, lst, path)
-		|| check_map(cub))
+		|| check_map(cub) || parse_doors(cub))
 	{
 		ft_lstclear(&lst, free);
 		close(fd);

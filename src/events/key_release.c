@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:03:58 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:41:29 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:57:55 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int	key_release(int keycode, void *param)
 		cub->keys.right = 0;
 	else if (keycode == KEY_SPACE)
 		cub->keys.space = 0;
+	else if (keycode == KEY_E)
+		cub->keys.e = 0;
 	return (0);
 }
