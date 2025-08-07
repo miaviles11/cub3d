@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:51:04 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 18:12:35 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/07 19:04:19 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ int	init_textures(t_cub *cub)
 	if (!cub->textures[DIR_DOOR].path)
 		return (-1);
 	if (load_tex(cub, &cub->textures[DIR_DOOR], cub->textures[DIR_DOOR].path))
-		return (-1);	
+		return (-1);
 	return (0);
 }

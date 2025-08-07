@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 16:58:19 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/07 19:45:56 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ double	find_safe_distance(t_cub *c, double start_x, double start_y, double dx, d
 void	apply_wall_sliding(t_cub *c, double dx, double dy);
 void	subdiv_move(t_cub *c, double total_dx, double total_dy);
 void	try_smooth_move(t_cub *c, double dx, double dy);
+void    rotate_player(t_player *p, double angle); 
 void	move(t_cub *c, double dx, double dy);
 int		movement_update(t_cub *c);
 
@@ -122,5 +123,8 @@ double  ft_min_d(double a, double b);
 
 int		parse_doors(t_cub *cub);
 void	handle_door_interaction(t_cub *cub);
+int		is_door_position(t_cub *c, int x, int y);
+int		get_tile_color(t_cub *c, int map_x, int map_y);
+int		mouse_move(int x, int y, void *param);
 
 #endif

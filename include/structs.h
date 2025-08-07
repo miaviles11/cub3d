@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 17:35:43 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 17:35:47 by miaviles         ###   ########.fr       */
+/*   Created: 2025/08/07 19:00:13 by miaviles          #+#    #+#             */
+/*   Updated: 2025/08/07 19:42:34 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,11 @@ typedef struct s_cub
 	int				floor_color;
 	int				ceil_color;
 	char			*map_dir;
+	int     		mouse_x;
+    int     		first_mouse;
+	int				door_flash_timer;
+	int				door_flash_x;
+	int				door_flash_y;
 }	t_cub;
 
 #endif

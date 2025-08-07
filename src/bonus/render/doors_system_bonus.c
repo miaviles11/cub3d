@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:46:58 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 16:49:53 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/07 19:01:50 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,22 @@ static t_door	*find_closest_door(t_cub *cub)
 
 static void	toggle_door(t_cub *cub, t_door *door)
 {
+	if (door->is_open)
+	{
+		int player_x = (int)cub->player.pos.x;
+		int player_y = (int)cub->player.pos.y;
+		
+		if (player_x == (int)door->pos.x && player_y == (int)door->pos.y)
+			return;
+	}
 	door->is_open = !door->is_open;
 	if (door->is_open)
 		cub->map.grid[(int)door->pos.y][(int)door->pos.x] = '0';
 	else
 		cub->map.grid[(int)door->pos.y][(int)door->pos.x] = 'D';
+	cub->door_flash_timer = 15;
+	cub->door_flash_x = (int)door->pos.x;
+	cub->door_flash_y = (int)door->pos.y;
 }
 
 void	handle_door_interaction(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:09:49 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:42:47 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/07 19:46:42 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	move(t_cub *c, double dx, double dy)
 	wall_slide_move(c, dx, dy);
 }
 
-static void	rotate(t_player *p, double angle)
+void	rotate_player(t_player *p, double angle)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -59,9 +59,9 @@ static void	calculate_movement_wasd(t_cub *c, double *total_dx, double *total_dy
 static void	handle_rotation(t_cub *c)
 {
 	if (c->keys.left)
-		rotate(&c->player, -ROT_SPEED);
+		rotate_player(&c->player, -ROT_SPEED);
 	if (c->keys.right)
-		rotate(&c->player, ROT_SPEED);
+		rotate_player(&c->player, ROT_SPEED);
 }
 
 int	movement_update(t_cub *c)

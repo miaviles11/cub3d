@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   doors_bonus.c                                      :+:      :+:    :+:   */
+/*   doors_parse_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:42:52 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 16:46:17 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/07 18:47:26 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
+
+int	is_door_position(t_cub *c, int x, int y)
+{
+	int i;
+	
+	i = 0;
+	while (i < c->doors.count)
+	{
+		if ((int)c->doors.doors[i].pos.x == x && 
+		    (int)c->doors.doors[i].pos.y == y)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 static int	init_door_list(t_door_list *doors)
 {

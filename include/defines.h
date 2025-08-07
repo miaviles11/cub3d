@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 18:56:20 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 17:57:19 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/07 19:49:39 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 #define ROT_SPEED 0.05
 #define MAX_MOVE_STEP 0.05
 #define EPS 1e-6
+#define MOUSE_SENSITIVITY   0.0045
 
 /* Jump physics ------------------------------------------------------------ */
 #define JUMP_INITIAL_SPEED    0.25
@@ -38,7 +39,8 @@
 #define MINIMAP_PADDING  10
 #define COLOR_WALL       0x4A4A4A  /* Piedra gris oscuro */
 #define COLOR_SPACE      0x1A1A0E  /* Suelo de mazmorra */
-#define COLOR_DOOR       0x8B4513  /* Madera de roble */
+#define COLOR_DOOR       0x8B4513  /* Marrón */
+#define COLOR_DOOR_OPEN  0xDEB887  /* Marrón claro */
 #define COLOR_SPRITE     0xFFD700  /* Oro (tesoros/objetos) */
 #define COLOR_PLAYER     0xFF4500  /* Antorcha naranja */
 #define COLOR_VISITED    0x2F2F1F  /* Suelo pisado */

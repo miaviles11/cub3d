@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:14:58 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 16:45:04 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/07 19:19:59 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,6 @@ void	draw_minimap_border(t_cub *c)
 		}
 		y++;
 	}
-}
-
-int	get_tile_color(t_cub *c, int map_x, int map_y)
-{
-	char	tile;
-
-	if (map_x < 0 || map_x >= c->map.w || map_y < 0 || map_y >= c->map.h)
-		return (COLOR_WALL);
-	tile = c->map.grid[map_y][map_x];
-	if (tile == '1')
-		return (COLOR_WALL);
-	else if (tile == 'D')
-		return (COLOR_DOOR);
-	else if (tile == 'S' || tile == 'T' || tile == 'E')
-		return (COLOR_SPRITE);
-	return (COLOR_SPACE);
 }
 
 void	draw_minimap_content(t_cub *c)

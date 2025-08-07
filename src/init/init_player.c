@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:50:59 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:42:22 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/07 19:14:56 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,26 @@ static void	set_plane(t_player *p)
 		p->plane = (t_vec){-FOV, 0};
 }
 
+static void	init_data(t_cub *cub, char c, int x, int y)
+{
+	cub->player.pos = (t_vec){x + 0.5, y + 0.5};
+	cub->map.grid[y][x] = '0';
+	cub->player.dir = (t_vec){(c == 'E') - (c == 'W'),
+		(c == 'S') - (c == 'N')};
+	init_jump(&cub->player);
+	set_plane(&cub->player);
+	cub->door_flash_timer = 0;
+	cub->door_flash_x = 0;
+	cub->door_flash_y = 0;
+}
+
 int	init_player(t_cub *cub)
 {
-	int		y = -1;
+	int		y;
 	int		x;
 	char	c;
 
+	y = -1;
 	while (++y < cub->map.h)
 	{
 		x = -1;
@@ -38,12 +52,7 @@ int	init_player(t_cub *cub)
 			c = cub->map.grid[y][x];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			{
-				cub->player.pos = (t_vec){x + 0.5, y + 0.5};
-				cub->map.grid[y][x] = '0';
-				cub->player.dir = (t_vec){(c == 'E') - (c == 'W'),
-					(c == 'S') - (c == 'N')};
-				init_jump(&cub->player);
-				set_plane(&cub->player);
+				init_data(cub, c, x, y);
 				return (0);
 			}
 		}
