@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_utils.c                                  :+:      :+:    :+:   */
+/*   sprite_collision_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 18:28:32 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/09 15:54:03 by miaviles         ###   ########.fr       */
+/*   Created: 2025/08/09 14:08:41 by miaviles          #+#    #+#             */
+/*   Updated: 2025/08/09 14:09:12 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
-int	is_walk(char c)
+int	check_sprite_collision(t_cub *c, double x, double y)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == 'D' || c == '2');
-}
+	int		i;
+	double	dx;
+	double	dy;
 
-int	out_of_bounds(t_map *m, int y, int x)
-{
-	return (y < 0 || x < 0 || y >= m->h || x >= m->w);
+	i = 0;
+	while (i < c->sprites.count)
+	{
+		dx = fabs(x - c->sprites.sprites[i].pos.x);
+		dy = fabs(y - c->sprites.sprites[i].pos.y);
+		if (dx < SPRITE_SIZE && dy < SPRITE_SIZE)
+			return (1);
+		i++;
+	}
+	return (0);
 }

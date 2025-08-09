@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/07 19:00:13 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/07 19:42:34 by miaviles         ###   ########.fr       */
+/*   Created: 2025/08/09 13:55:21 by miaviles          #+#    #+#             */
+/*   Updated: 2025/08/09 19:35:49 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,24 @@ typedef struct s_door_list
 	int		capacity;
 }	t_door_list;
 
+typedef struct s_sprite
+{
+	t_vec	pos;
+	int		frame_current;
+	int		frame_count;
+	int		*texture_ids;
+	double	distance;
+	int		last_update;
+	int     loaded; 
+}	t_sprite;
+
+typedef struct s_sprite_list
+{
+	t_sprite	*sprites;
+	int			count;
+	int			capacity;
+}	t_sprite_list;
+
 typedef struct s_keys
 {
 	int	w;
@@ -99,19 +117,22 @@ typedef struct s_cub
 	void			*mlx;
 	void			*win;
 	t_img			screen;
-	t_texture		textures[5];
+	t_texture		textures[MAX_TEXTURES];
+	int				texture_count;
 	t_map			map;
 	t_player		player;
 	t_keys			keys;
 	t_door_list		doors;
+	t_sprite_list	sprites;
+	double      z_buffer[1280];
 	int				floor_color;
 	int				ceil_color;
 	char			*map_dir;
-	int     		mouse_x;
-    int     		first_mouse;
 	int				door_flash_timer;
 	int				door_flash_x;
 	int				door_flash_y;
+	int				mouse_x;
+	int				first_mouse;
 }	t_cub;
 
 #endif

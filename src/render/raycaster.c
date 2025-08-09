@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 17:36:25 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 18:14:31 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/09 19:47:30 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,18 +134,25 @@ static void	set_tex_info(t_cub *c, t_ray *r)
 }
 
 /* ------------------------------------------------------------------------ */
-void	raycaster(t_cub *cub)
+void raycaster(t_cub *cub)
 {
-	t_ray	r;
-	int		x;
-
-	x = 0;
-	while (x < WIN_W)
-	{
-		ray_init(cub, &r, x);
-		dda(cub, &r);
-		set_tex_info(cub, &r);
-		draw_walls(cub, x, &r);
-		++x;
-	}
+    t_ray   r;
+    int     x;
+    
+    x = 0;
+    while (x < WIN_W)
+    {
+        cub->z_buffer[x] = 1000.0;
+        x++;
+    }
+    x = 0;
+    while (x < WIN_W)
+    {
+        ray_init(cub, &r, x);
+        dda(cub, &r);
+        set_tex_info(cub, &r);
+        draw_walls(cub, x, &r);
+        cub->z_buffer[x] = r.dist;
+        ++x;
+    }
 }

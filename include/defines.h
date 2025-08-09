@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 18:56:20 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/07 19:49:39 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/09 13:56:15 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@
 #define COLOR_PLAYER     0xFF4500  /* Antorcha naranja */
 #define COLOR_VISITED    0x2F2F1F  /* Suelo pisado */
 #define COLOR_BORDER     0xFFFFFF  /* Marco de madera */
+
+/*Sprites*/ 
+#define SPRITE_FRAMES       4     // Frames por animación
+#define SPRITE_FPS_MS       200   // Milisegundos por frame
+#define SPRITE_SIZE         0.6   // Tamaño de colisión
+#define MAX_TEXTURES        50    // Máximo texturas totales
 
 /* keycodes (X11 vs macOS) ------------------------------------------------- */
 # ifdef __APPLE__

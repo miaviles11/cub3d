@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_utils.c                                  :+:      :+:    :+:   */
+/*   texture_manager.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 18:28:32 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/09 15:54:03 by miaviles         ###   ########.fr       */
+/*   Created: 2025/08/09 14:05:00 by miaviles          #+#    #+#             */
+/*   Updated: 2025/08/09 19:20:41 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
-int	is_walk(char c)
+int	init_texture_array(t_cub *cub)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == 'D' || c == '2');
+	cub->texture_count = 0;
+	return (0);
 }
 
-int	out_of_bounds(t_map *m, int y, int x)
+int	add_texture_to_array(t_cub *cub, t_texture *tex)
 {
-	return (y < 0 || x < 0 || y >= m->h || x >= m->w);
+	if (cub->texture_count >= 10)
+		return (-1);
+	cub->textures[cub->texture_count] = *tex;
+	cub->texture_count++;
+	return (cub->texture_count - 1);
 }

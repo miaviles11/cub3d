@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:09:49 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 17:51:02 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/09 14:09:09 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static int	is_point_wall(t_cub *c, double x, double y)
 		return (1);
 	
 	tile = c->map.grid[(int)y][(int)x];
-	return (tile == '1' || tile == 'D');
+	if (tile == '1' || tile == 'D')
+		return (1);
+	
+	return (check_sprite_collision(c, x, y));
 }
 
 static int	check_collision_corners(t_cub *c, double x, double y, double radius)

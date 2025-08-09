@@ -11,7 +11,7 @@ LIBFT_DIR   := libft
 MLX_DIR     := minilibx-linux
 
 CC          := cc
-CFLAGS      := -Wall -Wextra -Werror \
+CFLAGS      := -Wall -Wextra -Werror -g \
                -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 LIBFT       := $(LIBFT_DIR)/libft.a

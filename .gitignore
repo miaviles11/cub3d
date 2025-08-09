@@ -13,10 +13,6 @@ minilibx-linux/
 # .vscode (configuración del editor local)
 .vscode/
 
-# Archivos de depuración o core dumps
-core
-*.core
-
 # Archivos temporales de editores
 *~
 *.swp
