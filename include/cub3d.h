@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:13:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/09 19:20:50 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:46:22 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include  <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -138,7 +139,7 @@ void	draw_walls(t_cub *c, int x, t_ray *r);
 /* -------------------------------------------------------------------------- */
 /*  Rendering - Minimap                                                      */
 /* -------------------------------------------------------------------------- */
-void	put_pixel_minimap(t_cub *c, int x, int y, int color);
+void	put_pixel_minimap(t_cub *cub, int x, int y, int color);
 void	draw_minimap_border(t_cub *c);
 int		get_tile_color(t_cub *c, int map_x, int map_y);
 void	draw_minimap_content(t_cub *c);
@@ -165,5 +166,11 @@ t_vec	vec_norm(t_vec v);
 double	ft_abs_d(double v);
 double	ft_max_d(double a, double b);
 double	ft_min_d(double a, double b);
+
+
+void	put_pixel_sprite(t_cub *cub, int x, int y, int color);
+void	draw_sprite_stripe(t_cub *cub, t_sprite *sprite, 
+		int sprite_screen_x, int sprite_width, int draw_start_y, 
+		int draw_end_y, int sprite_height);
 
 #endif

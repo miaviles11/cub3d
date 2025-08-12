@@ -6,20 +6,18 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:14:58 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/07 19:19:59 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:56:31 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
-void	put_pixel_minimap(t_cub *c, int x, int y, int color)
+void	put_pixel_minimap(t_cub *cub, int x, int y, int color)
 {
-	int	index;
-
-	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
-		return ;
-	index = y * c->screen.w + x;
-	c->screen.data[index] = color;
+	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
+    {
+        cub->screen.data[y * (cub->screen.line_len / 4) + x] = color;
+    }
 }
 
 void	draw_minimap_border(t_cub *c)
