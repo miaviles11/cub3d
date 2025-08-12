@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:13:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/12 18:46:22 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/12 19:44:03 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,5 +172,6 @@ void	put_pixel_sprite(t_cub *cub, int x, int y, int color);
 void	draw_sprite_stripe(t_cub *cub, t_sprite *sprite, 
 		int sprite_screen_x, int sprite_width, int draw_start_y, 
 		int draw_end_y, int sprite_height);
+void	put_pixel(t_img *img, int x, int y, int color);
 
 #endif

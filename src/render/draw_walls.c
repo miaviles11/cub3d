@@ -6,13 +6,13 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 20:47:49 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/07 19:39:01 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/12 19:43:55 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	put_pixel(t_img *img, int x, int y, int color)
+void	put_pixel(t_img *img, int x, int y, int color)
 {
 	if (x < 0 || x >= img->w || y < 0 || y >= img->h)
 		return ;
