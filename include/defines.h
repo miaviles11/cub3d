@@ -6,12 +6,15 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 18:56:20 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/12 16:48:54 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/12 20:07:13 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
+
+# define SPRITE_SCALE      0.90
+# define SPRITE_VMOVE      0.30
 
 /* window size ------------------------------------------------------------- */
 # define WIN_W      1280
@@ -49,7 +52,7 @@
 /*Sprites*/ 
 #define SPRITE_FRAMES       4     // Frames por animación
 #define SPRITE_FPS_MS       200   // Milisegundos por frame
-#define SPRITE_SIZE         0.25   // Tamaño de colisión
+#define SPRITE_SIZE         0.1   // Tamaño de colisión
 #define MAX_TEXTURES        50    // Máximo texturas totales
 
 /* keycodes (X11 vs macOS) ------------------------------------------------- */

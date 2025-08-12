@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:04:46 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/09 14:33:04 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/08/12 19:58:00 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	loop_hook(void *param)
         cub->door_flash_timer--;
 	draw_floor_ceil(cub);
 	raycaster(cub);
-	draw_sprites(cub, 0);
 	draw_minimap(cub);
+	draw_sprites(cub, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->screen.ptr, 0, 0);
 	timer_sleep(60, dt);
 	return (0);
