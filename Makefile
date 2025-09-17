@@ -13,9 +13,14 @@ MLX_DIR     := minilibx-linux
 CC          := cc
 CFLAGS      := -Wall -Wextra -Werror -g \
                -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
+# Desactivar PIE en objetos
+CFLAGS      += -fno-pie
+# Desactivar PIE al enlazar
+LDFLAGS     := -no-pie
 
 LIBFT       := $(LIBFT_DIR)/libft.a
 MLX_LIB     := $(MLX_DIR)/libmlx_Linux.a
+LIBS        := -lX11 -lXext -lm -lz
 
 # Busca recursivamente todos los .c en src/
 SRCS        := $(shell find $(SRC_DIR) -name "*.c")
@@ -27,7 +32,7 @@ OBJS        := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX_LIB) $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_LIB) -lX11 -lXext -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LIBFT) $(MLX_LIB) $(LIBS) -o $(NAME)
 
 # ----------------------------------------------------------------------------- #
 # Compilar libft (incluye get_next_line y bonus)
@@ -71,4 +76,4 @@ re: fclean all
 # ----------------------------------------------------------------------------- #
 # Phony
 # ----------------------------------------------------------------------------- #
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re
