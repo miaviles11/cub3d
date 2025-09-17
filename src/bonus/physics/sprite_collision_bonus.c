@@ -21,10 +21,13 @@ int	check_sprite_collision(t_cub *c, double x, double y)
 	i = 0;
 	while (i < c->sprites.count)
 	{
-		dx = fabs(x - c->sprites.sprites[i].pos.x);
-		dy = fabs(y - c->sprites.sprites[i].pos.y);
-		if (dx < SPRITE_SIZE && dy < SPRITE_SIZE)
-			return (1);
+		if (c->sprites.sprites[i].frame_count > 0)
+		{
+			dx = fabs(x - c->sprites.sprites[i].pos.x);
+			dy = fabs(y - c->sprites.sprites[i].pos.y);
+			if (dx < SPRITE_SIZE && dy < SPRITE_SIZE)
+				return (1);
+		}
 		i++;
 	}
 	return (0);
