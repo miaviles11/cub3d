@@ -38,7 +38,7 @@ $(NAME): $(LIBFT) $(MLX_LIB) $(OBJ_DIR) $(OBJS)
 # Compilar libft (incluye get_next_line y bonus)
 # ----------------------------------------------------------------------------- #
 $(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR) bonus
+	@$(MAKE) -C $(LIBFT_DIR) bonus CFLAGS="-Wall -Wextra -Werror -g "
 
 # ----------------------------------------------------------------------------- #
 # Compilar MiniLibX Linux

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 20:47:49 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/12 19:43:55 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:00:48 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ static void	draw_slice(t_cub *c, int x, t_ray *r,
 	}
 }
 
-/* -------------------------------------------------------------------------- */
-/*	Draw one textured vertical column                                         */
-/* -------------------------------------------------------------------------- */
 void	draw_walls(t_cub *c, int x, t_ray *r)
 {
 	int		line_h;
@@ -54,8 +51,6 @@ void	draw_walls(t_cub *c, int x, t_ray *r)
 	line_h = (int)(WIN_H / r->dist);
 	if (line_h < 1)
 		line_h = 1;
-
-	// Aplicar el mismo offset de salto que al suelo/techo
 	jump_offset = (int)(c->player.z_offset * JUMP_VISUAL_MULTIPLIER);
 	
 	start = -line_h / 2 + WIN_H / 2 + jump_offset;
@@ -64,9 +59,7 @@ void	draw_walls(t_cub *c, int x, t_ray *r)
 	end = line_h / 2 + WIN_H / 2 + jump_offset;
 	if (end >= WIN_H)
 		end = WIN_H - 1;
-
 	step = (double)TEX_SIZE / line_h;
 	tex_pos = (start - WIN_H / 2 - jump_offset + line_h / 2) * step;
-
 	draw_slice(c, x, r, start, end, step, tex_pos);
 }

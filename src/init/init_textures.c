@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:51:04 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/09 16:48:42 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/09/22 11:56:58 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ int	load_tex(t_cub *c, t_texture *tex, char *orig)
 	if (!img || tex->img.w != TEX_SIZE || tex->img.h != TEX_SIZE)
 	{
 		if (img)
+		{
 			mlx_destroy_image(c->mlx, img);
+			free(img);
+		}
 		return (-1);
 	}
 	tex->img.ptr = img;
