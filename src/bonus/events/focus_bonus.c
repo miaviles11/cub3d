@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   focus_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 10:52:37 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 10:52:41 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/07 19:55:00 by miaviles          #+#    #+#             */
+/*   Updated: 2025/10/07 19:46:00 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
-double	ft_abs_d(double v)
+int	focus_in(void *param)
 {
-	if (v < 0.0)
-		return (-v);
-	return (v);
+	t_cub	*cub;
+
+	cub = (t_cub *)param;
+	mlx_mouse_hide(cub->mlx, cub->win);
+	mlx_mouse_move(cub->mlx, cub->win, WIN_W / 2, WIN_H / 2);
+	cub->first_mouse = 1;
+	return (0);
 }
 
-double	ft_max_d(double a, double b)
+int	focus_out(void *param)
 {
-	if (a > b)
-		return (a);
-	return (b);
-}
+	t_cub	*cub;
 
-double	ft_min_d(double a, double b)
-{
-	if (a < b)
-		return (a);
-	return (b);
+	cub = (t_cub *)param;
+	mlx_mouse_show(cub->mlx, cub->win);
+	return (0);
 }

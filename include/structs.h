@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 13:55:21 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 17:02:47 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 18:42:55 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define STRUCTS_H
 
 /* ========================================================================== */
-/*                            BASIC STRUCTURES                                */
+/*                          BASIC STRUCTURES                                  */
 /* ========================================================================== */
 
 typedef struct s_vec
@@ -24,7 +24,7 @@ typedef struct s_vec
 }	t_vec;
 
 /* ========================================================================== */
-/*                            IMAGE STRUCTURES                                */
+/*                          IMAGE & TEXTURE STRUCTURES                        */
 /* ========================================================================== */
 
 typedef struct s_img
@@ -45,7 +45,7 @@ typedef struct s_texture
 }	t_texture;
 
 /* ========================================================================== */
-/*                            MAP STRUCTURES                                  */
+/*                          MAP STRUCTURES                                    */
 /* ========================================================================== */
 
 typedef struct s_map
@@ -55,8 +55,16 @@ typedef struct s_map
 	int		h;
 }	t_map;
 
+typedef struct s_map_builder
+{
+	char	**grid;
+	int		h;
+	int		w;
+	int		cap;
+}	t_map_builder;
+
 /* ========================================================================== */
-/*                            PLAYER STRUCTURES                               */
+/*                          PLAYER STRUCTURES                                 */
 /* ========================================================================== */
 
 typedef struct s_player
@@ -82,7 +90,19 @@ typedef struct s_keys
 }	t_keys;
 
 /* ========================================================================== */
-/*                            RAYCASTING STRUCTURES                           */
+/*                          MOVEMENT STRUCTURES                               */
+/* ========================================================================== */
+
+typedef struct s_move_data
+{
+	double	start_x;
+	double	start_y;
+	double	dx;
+	double	dy;
+}	t_move_data;
+
+/* ========================================================================== */
+/*                          RAYCASTING STRUCTURES                             */
 /* ========================================================================== */
 
 typedef struct s_ray
@@ -100,8 +120,18 @@ typedef struct s_ray
 	int		tex_x;
 }	t_ray;
 
+typedef struct s_wall_draw
+{
+	int		x;
+	t_ray	*r;
+	int		start;
+	int		end;
+	double	step;
+	double	tex_pos;
+}	t_wall_draw;
+
 /* ========================================================================== */
-/*                            DOOR STRUCTURES                                 */
+/*                          DOOR STRUCTURES                                   */
 /* ========================================================================== */
 
 typedef struct s_door
@@ -119,7 +149,7 @@ typedef struct s_door_list
 }	t_door_list;
 
 /* ========================================================================== */
-/*                            SPRITE STRUCTURES                               */
+/*                          SPRITE STRUCTURES                                 */
 /* ========================================================================== */
 
 typedef struct s_sprite
@@ -139,6 +169,10 @@ typedef struct s_sprite_list
 	int			count;
 	int			capacity;
 }	t_sprite_list;
+
+/* ========================================================================== */
+/*                          SPRITE RENDERING STRUCTURES                       */
+/* ========================================================================== */
 
 typedef struct s_sprite_params
 {
@@ -174,8 +208,9 @@ typedef struct s_render_params
 }	t_render_params;
 
 /* ========================================================================== */
-/*                            WEAPON STRUCTURES                               */
+/*                          WEAPON STRUCTURES                                 */
 /* ========================================================================== */
+
 typedef struct s_weapon
 {
 	t_img	idle;
@@ -195,31 +230,7 @@ typedef struct s_blit_data
 }	t_blit_data;
 
 /* ========================================================================== */
-/*                            MAP BUILDER STRUCTURES                          */
-/* ========================================================================== */
-
-typedef struct s_map_builder
-{
-	char	**grid;
-	int		h;
-	int		w;
-	int		cap;
-}	t_map_builder;
-
-/* ========================================================================== */
-/*                            MOVEMENT STRUCTURES                             */
-/* ========================================================================== */
-
-typedef struct s_move_data
-{
-	double	start_x;
-	double	start_y;
-	double	dx;
-	double	dy;
-}	t_move_data;
-
-/* ========================================================================== */
-/*                            MAIN STRUCTURE                                  */
+/*                          MAIN STRUCTURE                                    */
 /* ========================================================================== */
 
 typedef struct s_cub
@@ -234,6 +245,7 @@ typedef struct s_cub
 	t_keys			keys;
 	t_door_list		doors;
 	t_sprite_list	sprites;
+	t_weapon		weapon;
 	double			z_buffer[1280];
 	int				floor_color;
 	int				ceil_color;
@@ -243,7 +255,6 @@ typedef struct s_cub
 	int				door_flash_y;
 	int				mouse_x;
 	int				first_mouse;
-	t_weapon		weapon;
 }	t_cub;
 
 #endif

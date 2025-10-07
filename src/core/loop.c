@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:04:46 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/12 19:58:00 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:27:00 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /* forward decl */
 void	weapon_draw(t_cub *c);
+void	draw_crosshair(t_cub *c);
 
 static int	init_screen(t_cub *cub)
 {
@@ -43,8 +44,9 @@ int	loop_hook(void *param)
 		cub->door_flash_timer--;
 	draw_floor_ceil(cub);
 	raycaster(cub);
-	draw_minimap(cub);
 	draw_sprites(cub, 0);
+	draw_minimap(cub);
+	draw_crosshair(cub);
 	weapon_draw(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->screen.ptr, 0, 0);
 	timer_sleep(60, dt);

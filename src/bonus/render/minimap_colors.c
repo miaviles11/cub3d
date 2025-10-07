@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 19:00:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 10:12:36 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:19:01 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static int	check_sprite_at_position(t_cub *c, int map_x, int map_y)
 	i = 0;
 	while (i < c->sprites.count)
 	{
-		if ((int)c->sprites.sprites[i].pos.x == map_x
+		if (c->sprites.sprites[i].loaded
+			&& (int)c->sprites.sprites[i].pos.x == map_x
 			&& (int)c->sprites.sprites[i].pos.y == map_y)
 			return (1);
 		i++;

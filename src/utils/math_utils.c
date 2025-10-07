@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_utils.h                                       :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:33:56 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 18:32:39 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/07 17:52:00 by miaviles          #+#    #+#             */
+/*   Updated: 2025/10/07 17:52:22 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PATH_UTILS_H
-# define PATH_UTILS_H
+#include "../../include/cub3d.h"
 
-char	*ft_dirname(const char *path);
-char	*path_join(const char *dir, const char *file);
-char	*ft_path_parent(const char *dir);
-int		file_exists(const char *path);
+double	ft_abs_d(double v)
+{
+	if (v < 0.0)
+		return (-v);
+	return (v);
+}
 
-#endif
+double	ft_max_d(double a, double b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+double	ft_min_d(double a, double b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}

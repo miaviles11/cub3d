@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:08:41 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/09 14:09:12 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:16:49 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_sprite_collision(t_cub *c, double x, double y)
 	i = 0;
 	while (i < c->sprites.count)
 	{
-		if (c->sprites.sprites[i].frame_count > 0)
+		if (c->sprites.sprites[i].loaded)
 		{
 			dx = fabs(x - c->sprites.sprites[i].pos.x);
 			dy = fabs(y - c->sprites.sprites[i].pos.y);
