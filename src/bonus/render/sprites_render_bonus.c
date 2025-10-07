@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:00:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 10:07:48 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:54:15 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	put_pixel_sprite(t_cub *cub, int x, int y, int color)
 		cub->screen.data[y * (cub->screen.line_len / 4) + x] = color;
 }
 
-static void	init_sprite_params(t_sprite_params *p, t_cub *c, t_sprite *sp,
+void	init_sprite_params(t_sprite_params *p, t_cub *c, t_sprite *sp,
 		int screen_x)
 {
 	p->start_x = screen_x - p->sprite_w / 2;
@@ -28,8 +28,7 @@ static void	init_sprite_params(t_sprite_params *p, t_cub *c, t_sprite *sp,
 	p->v_move_screen = (int)(SPRITE_VMOVE / p->ty);
 }
 
-static void	draw_vertical_line(t_cub *c, t_sprite *sp, t_sprite_params *p,
-		int x)
+void	draw_vertical_line(t_cub *c, t_sprite *sp, t_sprite_params *p, int x)
 {
 	int	y;
 	int	tex_y;
@@ -54,7 +53,7 @@ static void	draw_vertical_line(t_cub *c, t_sprite *sp, t_sprite_params *p,
 	}
 }
 
-static void	process_stripe_column(t_cub *c, t_sprite *sp, t_sprite_params *p,
+void	process_stripe_column(t_cub *c, t_sprite *sp, t_sprite_params *p,
 		int x)
 {
 	if (x < 0 || x >= WIN_W)
@@ -87,43 +86,4 @@ void	draw_sprite_stripe(t_cub *c, t_sprite *sp, int screen_x,
 		process_stripe_column(c, sp, &p, x);
 		x++;
 	}
-}
-
-static void	init_render_params(t_render_params *rp, t_cub *cub,
-		double transform_x, double transform_y)
-{
-	rp->sprite_screen_x = (int)((WIN_W / 2.0) * (1.0 + transform_x
-				/ transform_y));
-	rp->sprite_h = (int)fabs((WIN_H / transform_y) * SPRITE_SCALE);
-	if (rp->sprite_h < 1)
-		rp->sprite_h = 1;
-	rp->sprite_w = rp->sprite_h;
-	rp->jump_offset = (int)(cub->player.z_offset * JUMP_VISUAL_MULTIPLIER);
-	rp->v_move_screen = (int)(SPRITE_VMOVE / transform_y);
-}
-
-static void	init_draw_params(t_draw_params *dp, t_render_params *rp)
-{
-	dp->start_y = -rp->sprite_h / 2 + WIN_H / 2 + rp->jump_offset
-		+ rp->v_move_screen;
-	if (dp->start_y < 0)
-		dp->start_y = 0;
-	dp->end_y = rp->sprite_h / 2 + WIN_H / 2 + rp->jump_offset
-		+ rp->v_move_screen;
-	if (dp->end_y >= WIN_H)
-		dp->end_y = WIN_H - 1;
-	dp->sprite_w = rp->sprite_w;
-	dp->sprite_h = rp->sprite_h;
-}
-
-void	render_sprite_column(t_cub *cub, t_sprite *sprite, double transform_x,
-		double transform_y)
-{
-	t_render_params	rp;
-	t_draw_params	dp;
-
-	sprite->distance = transform_y;
-	init_render_params(&rp, cub, transform_x, transform_y);
-	init_draw_params(&dp, &rp);
-	draw_sprite_stripe(cub, sprite, rp.sprite_screen_x, dp);
 }

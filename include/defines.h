@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 18:56:20 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/12 20:07:13 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:01:28 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 #define JUMP_INITIAL_SPEED    0.25
 #define GRAVITY              0.015
 #define JUMP_VISUAL_MULTIPLIER  40
+
+#define WFIRE_TICKS 6
+#define WEAPON_SCALE 2
 
 /* Minimap */
 #define MINIMAP_SIZE     150

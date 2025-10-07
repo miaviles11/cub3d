@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 11:30:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 10:42:04 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:33:06 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ void	draw_sprites(t_cub *cub, int frame)
 	while (i < cub->sprites.count)
 	{
 		sprite = &cub->sprites.sprites[i];
-		calculate_sprite_transform(cub, sprite, &transform_x, &transform_y);
-		if (transform_y > 0)
-			render_sprite_column(cub, sprite, transform_x, transform_y);
+		if (sprite->loaded)
+		{
+			calculate_sprite_transform(cub, sprite, &transform_x, &transform_y);
+			if (transform_y > 0)
+				render_sprite_column(cub, sprite, transform_x, transform_y);
+		}
 		i++;
 	}
 }

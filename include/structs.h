@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 13:55:21 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:50:43 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:02:47 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,27 @@ typedef struct s_render_params
 }	t_render_params;
 
 /* ========================================================================== */
+/*                            WEAPON STRUCTURES                               */
+/* ========================================================================== */
+typedef struct s_weapon
+{
+	t_img	idle;
+	t_img	fire;
+	int		fire_timer;
+	int		initialized;
+}	t_weapon;
+
+typedef struct s_blit_data
+{
+	t_img	*dst;
+	t_img	*src;
+	int		ox;
+	int		oy;
+	int		sw;
+	int		sh;
+}	t_blit_data;
+
+/* ========================================================================== */
 /*                            MAP BUILDER STRUCTURES                          */
 /* ========================================================================== */
 
@@ -222,6 +243,7 @@ typedef struct s_cub
 	int				door_flash_y;
 	int				mouse_x;
 	int				first_mouse;
+	t_weapon		weapon;
 }	t_cub;
 
 #endif

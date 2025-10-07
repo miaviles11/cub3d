@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:13:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:53:37 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:28:35 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include  <stdio.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -201,10 +201,36 @@ double	ft_max_d(double a, double b);
 double	ft_min_d(double a, double b);
 
 
+/* sprites_render_bonus.c */
 void	put_pixel_sprite(t_cub *cub, int x, int y, int color);
+void	init_sprite_params(t_sprite_params *p, t_cub *c, t_sprite *sp,
+			int screen_x);
+void	draw_vertical_line(t_cub *c, t_sprite *sp, t_sprite_params *p, int x);
+void	process_stripe_column(t_cub *c, t_sprite *sp, t_sprite_params *p,
+			int x);
 void	draw_sprite_stripe(t_cub *c, t_sprite *sp, int screen_x,
 			t_draw_params dp);
+
+/* sprites_render_utils_bonus.c */
+void	init_render_params(t_render_params *rp, t_cub *cub,
+			double transform_x, double transform_y);
+void	init_draw_params(t_draw_params *dp, t_render_params *rp);
 void	render_sprite_column(t_cub *cub, t_sprite *sprite, double transform_x,
 			double transform_y);
+
+/* shoot.c */
+void	ray_setup(t_cub *c, t_ray *r);
+int		check_hit(t_cub *c, int mx, int my);
+
+/* weapon.c */
+int		load_weapon_img(void *mlx, const char *path, t_img *out);
+int		init_weapon(t_cub *c);
+void	weapon_on_click(t_cub *c);
+void	draw_pixel_scaled(t_blit_data *bd, int x, int y);
+void	blit_row(t_blit_data *bd, int y);
+
+/* weapon_utils.c */
+void	blit_scaled(t_blit_data *bd);
+void	weapon_draw(t_cub *c);
 
 #endif
