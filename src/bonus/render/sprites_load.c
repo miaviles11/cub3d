@@ -6,13 +6,13 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:15:47 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/12 19:11:54 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:59:03 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
-static int	load_sprite_texture(t_cub *cub, const char *path, int index)
+int	load_texture_image(t_cub *cub, const char *path, int index)
 {
 	t_texture	*tex;
 	void		*img;
@@ -21,18 +21,15 @@ static int	load_sprite_texture(t_cub *cub, const char *path, int index)
 
 	if (index >= MAX_TEXTURES)
 		return (-1);
-	
 	tex = &cub->textures[index];
 	img = mlx_xpm_file_to_image(cub->mlx, (char *)path, &w, &h);
 	if (!img)
 		return (-1);
-	
 	tex->img.ptr = img;
 	tex->img.w = w;
 	tex->img.h = h;
 	tex->img.data = (int *)mlx_get_data_addr(img, &tex->img.bpp,
 			&tex->img.line_len, &tex->img.endian);
-	
 	if (!tex->img.data)
 	{
 		mlx_destroy_image(cub->mlx, img);
@@ -41,7 +38,7 @@ static int	load_sprite_texture(t_cub *cub, const char *path, int index)
 	return (0);
 }
 
-static char	*create_sprite_path(int frame_index)
+char	*create_sprite_path(int frame_index)
 {
 	char	*num_str;
 	char	*temp;
@@ -59,73 +56,49 @@ static char	*create_sprite_path(int frame_index)
 	return (path);
 }
 
-// Función pública que usa la firma del header
-int	load_sprite_frames(t_cub *cub, t_sprite *sprite)
+int	load_single_frame(t_cub *cub, t_sprite *sprite, int i, int *counter)
 {
 	char	*path;
-	int		i;
-	static int sprite_tex_counter = 10; // Empezar en índice 10
 
-	sprite->texture_ids = malloc(sizeof(int) * SPRITE_FRAMES);
-	if (!sprite->texture_ids)
-		return (-1);
-	
-	i = 0;
-	while (i < SPRITE_FRAMES)
+	path = create_sprite_path(i);
+	if (!path)
 	{
-		path = create_sprite_path(i);
-		if (!path)
-		{
-			// Si falla, usar textura por defecto
-			sprite->texture_ids[i] = DIR_NORTH;
-		}
-		else
-		{
-			// Intentar cargar la textura
-			if (load_sprite_texture(cub, path, sprite_tex_counter) == -1)
-				sprite->texture_ids[i] = DIR_NORTH; // Fallback
-			else
-			{
-				sprite->texture_ids[i] = sprite_tex_counter;
-				sprite_tex_counter++;
-			}
-			free(path);
-		}
-		i++;
+		sprite->texture_ids[i] = DIR_NORTH;
+		return (0);
 	}
-	
+	if (load_texture_image(cub, path, *counter) == -1)
+	{
+		sprite->texture_ids[i] = DIR_NORTH;
+		free(path);
+		return (0);
+	}
+	sprite->texture_ids[i] = *counter;
+	(*counter)++;
+	free(path);
+	return (0);
+}
+
+void	init_sprite_data(t_sprite *sprite)
+{
 	sprite->frame_count = SPRITE_FRAMES;
 	sprite->frame_current = 0;
 	sprite->last_update = 0;
 	sprite->loaded = 1;
-	
-	return (0);
 }
 
-int	sprites_load_all(t_cub *cub)
+int	load_sprite_frames(t_cub *cub, t_sprite *sprite, int *tex_counter)
 {
-	int			i;
-	t_sprite	*sprite;
+	int		i;
 
+	sprite->texture_ids = malloc(sizeof(int) * SPRITE_FRAMES);
+	if (!sprite->texture_ids)
+		return (-1);
 	i = 0;
-	while (i < cub->sprites.count)
+	while (i < SPRITE_FRAMES)
 	{
-		sprite = &cub->sprites.sprites[i];
-		if (!sprite->loaded)
-		{
-			if (load_sprite_frames(cub, sprite) == -1)
-			{
-				sprite->texture_ids = malloc(sizeof(int) * SPRITE_FRAMES);
-				if (sprite->texture_ids)
-				{
-					for (int j = 0; j < SPRITE_FRAMES; j++)
-						sprite->texture_ids[j] = DIR_NORTH;
-					sprite->frame_count = SPRITE_FRAMES;
-					sprite->loaded = 1;
-				}
-			}
-		}
+		load_single_frame(cub, sprite, i, tex_counter);
 		i++;
 	}
+	init_sprite_data(sprite);
 	return (0);
 }

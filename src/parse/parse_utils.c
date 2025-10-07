@@ -6,10 +6,9 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:37:22 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 16:37:27 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:17:30 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../include/cub3d.h"
 
@@ -47,7 +46,7 @@ int	parse_int(const char **str, int *out)
 /*  A line belongs to the map iff:                                            */
 /*   - No es un identificador (NO, SO, WE, EA, F, C).                         */
 /*   - Contiene SOLO {' ', '0','1','N','S','E','W','D','2'} hasta fin de línea*/
-/*   - Contiene al menos un tile real (no solo espacios).                      */
+/*   - Contiene al menos un tile real (no solo espacios).                     */
 /*  Nota: solo se saltan TABS de cabecera; los espacios son significativos.   */
 /* -------------------------------------------------------------------------- */
 static int	is_identifier(const char *s)

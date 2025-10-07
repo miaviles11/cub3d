@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:46:58 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/07 19:01:50 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:58:30 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static t_door	*find_closest_door(t_cub *cub)
 		if (is_door_in_direction(cub, &cub->doors.doors[i]))
 		{
 			dist = distance_to_point(cub->player.pos.x, cub->player.pos.y,
-				cub->doors.doors[i].pos.x + 0.5, cub->doors.doors[i].pos.y + 0.5);
+					cub->doors.doors[i].pos.x + 0.5, cub->doors.doors[i].pos.y
+					+ 0.5);
 			if (dist < min_dist)
 			{
 				min_dist = dist;
@@ -62,13 +63,15 @@ static t_door	*find_closest_door(t_cub *cub)
 
 static void	toggle_door(t_cub *cub, t_door *door)
 {
+	int	player_x;
+	int	player_y;
+
 	if (door->is_open)
 	{
-		int player_x = (int)cub->player.pos.x;
-		int player_y = (int)cub->player.pos.y;
-		
+		player_x = (int)cub->player.pos.x;
+		player_y = (int)cub->player.pos.y;
 		if (player_x == (int)door->pos.x && player_y == (int)door->pos.y)
-			return;
+			return ;
 	}
 	door->is_open = !door->is_open;
 	if (door->is_open)

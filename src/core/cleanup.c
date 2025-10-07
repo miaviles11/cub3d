@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:47:39 by miaviles          #+#    #+#             */
-/*   Updated: 2025/09/22 12:08:23 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:54:39 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	free_textures(t_cub *cub)
 	int	i;
 
 	i = 0;
-	//printf("%d\n", cub->texture_count);
 	while (i < cub->texture_count)
 	{
 		if (cub->textures[i].img.ptr)

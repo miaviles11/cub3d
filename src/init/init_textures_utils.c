@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*   init_textures_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:50:12 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:20:47 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/07 12:15:00 by miaviles          #+#    #+#             */
+/*   Updated: 2025/10/07 11:47:48 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	init_mlx(t_cub *cub)
+static int	load_door_texture(t_cub *cub)
 {
-	cub->mlx = mlx_init();
-	if (!cub->mlx)
+	cub->textures[DIR_DOOR].path = ft_strdup("./assets/textures/door.xpm");
+	if (!cub->textures[DIR_DOOR].path)
 		return (-1);
-	cub->win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "cub3D");
-	mlx_hook(cub->win, 6, 1L << 6, mouse_move, cub);
-	if (!cub->win)
+	if (load_tex(cub, &cub->textures[DIR_DOOR], cub->textures[DIR_DOOR].path))
 		return (-1);
-	cub->screen.ptr = NULL;
 	return (0);
+}
+
+int	init_textures(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (load_tex(cub, &cub->textures[i], cub->textures[i].path))
+			return (-1);
+		++i;
+	}
+	return (load_door_texture(cub));
 }

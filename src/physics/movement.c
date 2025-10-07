@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:09:49 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/07 19:46:42 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:16:23 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	rotate_player(t_player *p, double angle)
 	p->plane.y = old_plane_x * sin(angle) + p->plane.y * cos(angle);
 }
 
-static void	calculate_movement_wasd(t_cub *c, double *total_dx, double *total_dy)
+static void	calculate_movement_wasd(t_cub *c, double *total_dx,
+		double *total_dy)
 {
 	if (c->keys.w)
 	{

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:13:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/12 19:44:03 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:53:37 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ int		init_mlx(t_cub *cub);
 int		init_textures(t_cub *cub);
 int		init_player(t_cub *cub);
 int		init_map(t_cub *cub, const char *path);
+int		grow_grid(char ***grid, int *cap);
+char	*trim_line(char *dup);
+int		push_line(char *src, t_map_builder *mb);
+int		skip_to_map(int fd, char **line);
+int		read_map(int fd, t_map_builder *mb);
 
 /* -------------------------------------------------------------------------- */
 /*  Timing                                                                   */
@@ -85,6 +90,9 @@ int		parse_int(const char **str, int *out);
 /* -------------------------------------------------------------------------- */
 int		is_walk(char c);
 int		out_of_bounds(t_map *m, int y, int x);
+int		is_valid_char(char c);
+int		is_walkable(char c);
+int		touches_space_or_border(t_map *m, int y, int x);
 
 /* -------------------------------------------------------------------------- */
 /*  Texture Management                                                        */
@@ -93,6 +101,7 @@ int		init_texture_array(t_cub *cub);
 int		add_texture_to_array(t_cub *cub, t_texture *tex);
 int		load_tex(t_cub *c, t_texture *tex, char *orig);
 int		tex_sample(t_cub *cub, int id, int x, int y);
+int		init_textures(t_cub *cub);
 
 /* -------------------------------------------------------------------------- */
 /*  Physics - Movement & Collision                                           */
@@ -101,7 +110,6 @@ void	init_jump(t_player *player);
 void	update_jump(t_cub *c);
 int		is_wall(t_cub *c, double x, double y);
 void	wall_slide_move(t_cub *c, double dx, double dy);
-double	find_safe_distance(t_cub *c, double start_x, double start_y, double dx, double dy);
 void	apply_wall_sliding(t_cub *c, double dx, double dy);
 void	subdiv_move(t_cub *c, double total_dx, double total_dy);
 void	try_smooth_move(t_cub *c, double dx, double dy);
@@ -109,6 +117,8 @@ void	rotate_player(t_player *p, double angle);
 void	move(t_cub *c, double dx, double dy);
 int		movement_update(t_cub *c);
 int		check_sprite_collision(t_cub *c, double x, double y);
+double	find_safe_distance(t_cub *c, t_move_data *md);
+void	apply_wall_sliding(t_cub *c, double dx, double dy);
 
 /* -------------------------------------------------------------------------- */
 /*  Doors System                                                             */
@@ -119,10 +129,15 @@ int		is_door_position(t_cub *c, int x, int y);
 /* -------------------------------------------------------------------------- */
 /*  Sprites System                                                           */
 /* -------------------------------------------------------------------------- */
-void	draw_sprites(t_cub *cub, int current_time);
-void	render_sprite_column(t_cub *cub, t_sprite *sprite, double transform_x, double transform_y);
-int 	sprites_load_all(t_cub *cub);
-int		load_sprite_frames(t_cub *cub, t_sprite *sprite);
+int		load_texture_image(t_cub *cub, const char *path, int index);
+char	*create_sprite_path(int frame_index);
+int		load_single_frame(t_cub *cub, t_sprite *sprite, int i, int *counter);
+void	init_sprite_data(t_sprite *sprite);
+int		load_sprite_frames(t_cub *cub, t_sprite *sprite, int *tex_counter);
+void	init_fallback_sprite(t_sprite *sprite);
+int		load_sprite_safe(t_cub *cub, t_sprite *sprite, int *tex_counter);
+int		sprites_load_all(t_cub *cub);
+void	draw_sprites(t_cub *cub, int frame);
 
 /* -------------------------------------------------------------------------- */
 /*  Input - Mouse & Keyboard                                                 */
@@ -135,6 +150,24 @@ int		mouse_move(int x, int y, void *param);
 void	draw_floor_ceil(t_cub *cub);
 void	raycaster(t_cub *cub);
 void	draw_walls(t_cub *c, int x, t_ray *r);
+double	non_zero(double v);
+void	set_step_side(t_cub *c, t_ray *r);
+void	set_ray_dist(t_cub *c, t_ray *r);
+void	set_tex_info(t_cub *c, t_ray *r);
+
+/* ========================================================================== */
+/*                            WALL DRAWING STRUCTURES                         */
+/* ========================================================================== */
+
+typedef struct s_wall_draw
+{
+	int		x;
+	t_ray	*r;
+	int		start;
+	int		end;
+	double	step;
+	double	tex_pos;
+}	t_wall_draw;
 
 /* -------------------------------------------------------------------------- */
 /*  Rendering - Minimap                                                      */
@@ -169,9 +202,9 @@ double	ft_min_d(double a, double b);
 
 
 void	put_pixel_sprite(t_cub *cub, int x, int y, int color);
-void	draw_sprite_stripe(t_cub *cub, t_sprite *sprite, 
-		int sprite_screen_x, int sprite_width, int draw_start_y, 
-		int draw_end_y, int sprite_height);
-void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_sprite_stripe(t_cub *c, t_sprite *sp, int screen_x,
+			t_draw_params dp);
+void	render_sprite_column(t_cub *cub, t_sprite *sprite, double transform_x,
+			double transform_y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:14:58 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/12 16:56:31 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:58:17 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	put_pixel_minimap(t_cub *cub, int x, int y, int color)
 {
 	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
-    {
-        cub->screen.data[y * (cub->screen.line_len / 4) + x] = color;
-    }
+	{
+		cub->screen.data[y * (cub->screen.line_len / 4) + x] = color;
+	}
 }
 
 void	draw_minimap_border(t_cub *c)
@@ -32,7 +32,8 @@ void	draw_minimap_border(t_cub *c)
 		while (x <= MINIMAP_PADDING + MINIMAP_SIZE)
 		{
 			if (y == MINIMAP_PADDING - 1 || y == MINIMAP_PADDING + MINIMAP_SIZE
-				|| x == MINIMAP_PADDING - 1 || x == MINIMAP_PADDING + MINIMAP_SIZE)
+				|| x == MINIMAP_PADDING - 1 || x == MINIMAP_PADDING
+				+ MINIMAP_SIZE)
 				put_pixel_minimap(c, x, y, COLOR_BORDER);
 			x++;
 		}
@@ -42,11 +43,11 @@ void	draw_minimap_border(t_cub *c)
 
 void	draw_minimap_content(t_cub *c)
 {
-	int		x;
-	int		y;
-	int		map_x;
-	int		map_y;
-	int		color;
+	int	x;
+	int	y;
+	int	map_x;
+	int	map_y;
+	int	color;
 
 	y = 0;
 	while (y < MINIMAP_SIZE)
@@ -57,7 +58,8 @@ void	draw_minimap_content(t_cub *c)
 			map_x = (x * c->map.w) / MINIMAP_SIZE;
 			map_y = (y * c->map.h) / MINIMAP_SIZE;
 			color = get_tile_color(c, map_x, map_y);
-			put_pixel_minimap(c, MINIMAP_PADDING + x, MINIMAP_PADDING + y, color);
+			put_pixel_minimap(c, MINIMAP_PADDING + x, MINIMAP_PADDING + y,
+				color);
 			x++;
 		}
 		y++;

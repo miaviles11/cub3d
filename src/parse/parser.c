@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:37:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/09 14:32:25 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:17:00 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ int	parse_scene(t_cub *cub, const char *path)
 	if (fd < 0)
 		return (-1);
 	lst = NULL;
-	if (read_file(fd, &lst) || process_meta(cub, lst, path)
-    	|| check_map(cub) || parse_doors(cub) || parse_sprites(cub))
+	if (read_file(fd, &lst) || process_meta(cub, lst, path) || check_map(cub)
+		|| parse_doors(cub) || parse_sprites(cub))
 	{
 		ft_lstclear(&lst, free);
 		close(fd);

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:42:52 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/07 18:47:26 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:57:46 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	is_door_position(t_cub *c, int x, int y)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < c->doors.count)
 	{
-		if ((int)c->doors.doors[i].pos.x == x && 
-		    (int)c->doors.doors[i].pos.y == y)
+		if ((int)c->doors.doors[i].pos.x == x
+			&& (int)c->doors.doors[i].pos.y == y)
 			return (1);
 		i++;
 	}

@@ -6,13 +6,13 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:50:22 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/17 17:50:52 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:53:09 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	grow_grid(char ***grid, int *cap)
+int	grow_grid(char ***grid, int *cap)
 {
 	char	**tmp;
 	int		i;
@@ -32,29 +32,36 @@ static int	grow_grid(char ***grid, int *cap)
 	return (0);
 }
 
-static int	push_line(char *src, char ***g, int *h, int *cap, int *w)
+char	*trim_line(char *dup)
+{
+	char	*end;
+
+	end = dup + ft_strlen(dup) - 1;
+	while (end >= dup && (*end == '\n' || *end == '\r'))
+		*end-- = '\0';
+	return (dup);
+}
+
+int	push_line(char *src, t_map_builder *mb)
 {
 	char	*dup;
-	char	*end;
 	int		len;
 
-	if (*h >= *cap && grow_grid(g, cap))
+	if (mb->h >= mb->cap && grow_grid(&mb->grid, &mb->cap))
 		return (-1);
 	dup = ft_strdup(src);
 	if (!dup)
 		return (-1);
-	end = dup + ft_strlen(dup) - 1;
-	while (end >= dup && (*end == '\n' || *end == '\r'))
-		*end-- = '\0';
-	(*g)[*h] = dup;
+	dup = trim_line(dup);
+	mb->grid[mb->h] = dup;
 	len = ft_strlen(dup);
-	if (len > *w)
-		*w = len;
-	++(*h);
+	if (len > mb->w)
+		mb->w = len;
+	++(mb->h);
 	return (0);
 }
 
-static int	skip_to_map(int fd, char **line)
+int	skip_to_map(int fd, char **line)
 {
 	*line = get_next_line(fd);
 	while (*line && !is_map_line(*line))
@@ -65,7 +72,7 @@ static int	skip_to_map(int fd, char **line)
 	return (0);
 }
 
-static int	read_map(int fd, t_cub *cub, int *cap)
+int	read_map(int fd, t_map_builder *mb)
 {
 	char	*line;
 
@@ -73,30 +80,11 @@ static int	read_map(int fd, t_cub *cub, int *cap)
 		return (-1);
 	while (line && is_map_line(line))
 	{
-		if (push_line(line, &cub->map.grid, &cub->map.h, cap, &cub->map.w))
+		if (push_line(line, mb))
 			return (free(line), -1);
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
 	return (0);
-}
-
-int	init_map(t_cub *cub, const char *path)
-{
-	int	fd;
-	int	cap;
-
-	cap = 16;
-	cub->map.grid = (char **)malloc(sizeof(char *) * (cap + 1));
-	if (!cub->map.grid)
-		return (-1);
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		return (-1);
-	if (read_map(fd, cub, &cap))
-		return (close(fd), -1);
-	cub->map.grid[cub->map.h] = NULL;
-	close(fd);
-	return (normalize_map(&cub->map));
 }

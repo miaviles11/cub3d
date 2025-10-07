@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 20:46:22 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:46:35 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 10:48:47 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	draw_floor_ceil(t_cub *cub)
 	int	*dst;
 	int	horizon_line;
 
-	horizon_line = WIN_H / 2 + (int)(cub->player.z_offset * JUMP_VISUAL_MULTIPLIER);
+	horizon_line = WIN_H / 2 + (int)(cub->player.z_offset
+			* JUMP_VISUAL_MULTIPLIER);
 	y = 0;
 	while (y < WIN_H)
 	{
 		color = cub->ceil_color;
-		if (y >= horizon_line)  // Cambio: usar horizon_line en lugar de WIN_H / 2
+		if (y >= horizon_line)
 			color = cub->floor_color;
 		x = 0;
 		while (x < WIN_W)

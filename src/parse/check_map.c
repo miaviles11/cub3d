@@ -6,40 +6,11 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 20:25:35 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/22 20:25:51 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:19:03 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-static int	is_valid_char(char c)
-{
-	if (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S')
-		return (1);
-	if (c == 'E' || c == 'W' || c == 'D' || c == '2')
-		return (1);
-	return (0);
-}
-
-static int	is_walkable(char c)
-{
-	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	if (c == '2' || c == 'D')
-		return (1);
-	return (0);
-}
-
-static int	touches_space_or_border(t_map *m, int y, int x)
-{
-	if (y == 0 || x == 0 || y == m->h - 1 || x == m->w - 1)
-		return (1);
-	if (m->grid[y - 1][x] == ' ' || m->grid[y + 1][x] == ' ')
-		return (1);
-	if (m->grid[y][x - 1] == ' ' || m->grid[y][x + 1] == ' ')
-		return (1);
-	return (0);
-}
 
 static int	scan_chars_and_spawn(t_map *m, int *spawn)
 {

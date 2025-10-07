@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 20:11:56 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/09 19:58:46 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:58:55 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	draw_player_on_minimap(t_cub *c)
 		while (dx <= radius)
 		{
 			if (dx * dx + dy * dy <= radius * radius)
-				put_pixel_minimap(c, player_x + dx, player_y + dy, COLOR_PLAYER);
+				put_pixel_minimap(c, player_x + dx, player_y
+					+ dy, COLOR_PLAYER);
 			dx++;
 		}
 		dy++;

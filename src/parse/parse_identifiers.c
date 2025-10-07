@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:37:35 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 16:37:41 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:16:52 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,3 @@ int	parse_texture_line(t_cub *cub, char *l)
 		return (store_texture(cub, DIR_EAST, s + 3));
 	return (-1);
 }
-
