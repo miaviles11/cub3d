@@ -6,37 +6,49 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:33:04 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 12:38:14 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:35:23 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	fail(t_cub *cub, const char *msg)
+static int	step_init_mlx(t_cub *cub)
 {
-	cub_error(cub, msg);
-	return (-1);
+	if (init_mlx(cub))
+		return (fail(cub,
+				"Failed to initialize graphics (MiniLibX/display)"));
+	return (0);
 }
 
-static int	init_game(t_cub *cub, const char *map_path)
+static int	step_init_textures(t_cub *cub)
 {
-	ft_bzero(cub, sizeof(t_cub));
-	cub->z_buffer = malloc(sizeof(double) * WIN_W);
-	if (!cub->z_buffer)
-		return (fail(cub, "malloc failed (z_buffer)"));
-	cub->map_dir = ft_dirname(map_path);
-	if (!cub->map_dir)
-		return (fail(cub, "malloc failed (map_dir)"));
-	if (parse_scene(cub, map_path))
-		return (fail(cub, "invalid .cub (identifiers/map/closure)"));
-	if (init_mlx(cub))
-		return (fail(cub, "mlx init failed"));
 	if (init_textures(cub))
-		return (fail(cub, "textures failed to load"));
+		return (fail(cub,
+				"Texture load failed: missing file or wrong size "
+				"(64x64 required)"));
+	return (0);
+}
+
+static int	step_init_sprites(t_cub *cub)
+{
 	if (sprites_load_all(cub))
-		return (fail(cub, "sprite textures failed to load"));
+		return (fail(cub,
+				"Sprite textures failed to load"));
+	return (0);
+}
+
+static int	step_init_player(t_cub *cub)
+{
 	if (init_player(cub))
-		return (fail(cub, "player spawn not found"));
+		return (fail(cub,
+				"Invalid map: missing or multiple player spawn"));
+	return (0);
+}
+
+static int	step_set_hooks(t_cub *cub)
+{
+	if (set_hooks(cub))
+		return (fail(cub, "Failed to install window hooks"));
 	return (0);
 }
 
@@ -44,16 +56,21 @@ int	cub3d_run(const char *map_path)
 {
 	t_cub	cub;
 
-	if (init_game(&cub, map_path))
-	{
-		cub_cleanup(&cub);
+	if (init_basics(&cub, map_path))
+		return (fail(&cub,
+				"Out of memory while resolving map directory"));
+	if (step_parse(&cub, map_path))
 		return (-1);
-	}
-	if (set_hooks(&cub))
-	{
-		cub_cleanup(&cub);
+	if (step_init_mlx(&cub))
 		return (-1);
-	}
+	if (step_init_textures(&cub))
+		return (-1);
+	if (step_init_sprites(&cub))
+		return (-1);
+	if (step_init_player(&cub))
+		return (-1);
+	if (step_set_hooks(&cub))
+		return (-1);
 	mlx_loop(cub.mlx);
 	cub_cleanup(&cub);
 	return (0);

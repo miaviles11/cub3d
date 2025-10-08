@@ -5,91 +5,109 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:51:04 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:47:16 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/08 17:00:44 by miaviles          #+#    #+#             */
+/*   Updated: 2025/10/08 17:39:04 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	*try_load(void *mlx, const char *path, int *w, int *h)
+static void	*load_from_mapdir(t_cub *c, t_texture *tex,
+		const char *orig, char **out_path)
 {
-	if (!mlx || !path || !*path)
+	void	*img;
+
+	*out_path = NULL;
+	if (!orig || orig[0] == '/')
 		return (NULL);
-	if (file_exists(path))
-		return (mlx_xpm_file_to_image(mlx, (char *)path, w, h));
-	return (NULL);
-}
-
-static void	*try_load_mapdir(t_cub *c, char *orig, t_texture *tex)
-{
-	void	*img;
-	char	*path_mapdir;
-
-	img = NULL;
-	if (orig[0] != '/')
-	{
-		path_mapdir = path_join(c->map_dir, orig);
-		if (path_mapdir)
-		{
-			img = try_load(c->mlx, path_mapdir, &tex->img.w, &tex->img.h);
-			free(path_mapdir);
-		}
-	}
+	*out_path = path_join(c->map_dir, orig);
+	if (!*out_path)
+		return (NULL);
+	img = try_load(c->mlx, *out_path, &tex->img.w, &tex->img.h);
 	return (img);
 }
 
-static void	*try_load_parent(t_cub *c, char *orig, t_texture *tex)
+static void	*load_from_parent(t_cub *c, t_texture *tex,
+		const char *orig, char **out_path)
 {
-	void	*img;
-	char	*path_parent;
 	char	*parent;
+	void	*img;
 
-	img = NULL;
-	if (orig[0] != '/')
-	{
-		parent = ft_path_parent(c->map_dir);
-		if (parent)
-		{
-			path_parent = path_join(parent, orig);
-			free(parent);
-			if (path_parent)
-			{
-				img = try_load(c->mlx, path_parent, &tex->img.w, &tex->img.h);
-				free(path_parent);
-			}
-		}
-	}
+	*out_path = NULL;
+	if (!orig || orig[0] == '/')
+		return (NULL);
+	parent = ft_path_parent(c->map_dir);
+	if (!parent)
+		return (NULL);
+	*out_path = path_join(parent, orig);
+	free(parent);
+	if (!*out_path)
+		return (NULL);
+	img = try_load(c->mlx, *out_path, &tex->img.w, &tex->img.h);
 	return (img);
 }
 
-static int	finalize_texture(t_cub *c, t_texture *tex, void *img)
+static int	store_texture(t_texture *tex, void *img)
 {
-	if (!img || tex->img.w != TEX_SIZE || tex->img.h != TEX_SIZE)
-	{
-		if (img)
-		{
-			mlx_destroy_image(c->mlx, img);
-			free(img);
-		}
-		return (-1);
-	}
 	tex->img.ptr = img;
 	tex->img.data = (int *)mlx_get_data_addr(img, &tex->img.bpp,
 			&tex->img.line_len, &tex->img.endian);
-	if (tex->img.data)
-		return (0);
-	return (-1);
+	if (!tex->img.data)
+		return (-1);
+	return (0);
 }
 
 int	load_tex(t_cub *c, t_texture *tex, char *orig)
 {
 	void	*img;
+	char	*p_mapdir;
+	char	*p_parent;
 
-	img = try_load(c->mlx, orig, &tex->img.w, &tex->img.h);
+	img = NULL;
+	p_mapdir = NULL;
+	p_parent = NULL;
+	if (!c || !tex || !is_nonempty_path(orig))
+		return (-1);
+	img = load_direct(c, tex, orig);
 	if (!img)
-		img = try_load_mapdir(c, orig, tex);
+		img = load_from_mapdir(c, tex, orig, &p_mapdir);
 	if (!img)
-		img = try_load_parent(c, orig, tex);
-	return (finalize_texture(c, tex, img));
+		img = load_from_parent(c, tex, orig, &p_parent);
+	free(p_mapdir);
+	free(p_parent);
+	if (!img)
+		return (-1);
+	return (store_texture(tex, img));
+}
+
+static int	load_door_texture(t_cub *cub)
+{
+	cub->textures[DIR_DOOR].path = ft_strdup("./assets/textures/door.xpm");
+	if (!cub->textures[DIR_DOOR].path)
+		return (-1);
+	if (load_tex(cub, &cub->textures[DIR_DOOR], cub->textures[DIR_DOOR].path))
+		return (-1);
+	return (0);
+}
+
+int	init_textures(t_cub *cub)
+{
+	int	i;
+
+	if (!cub)
+		return (-1);
+	i = 0;
+	while (i < 4)
+	{
+		if (load_tex(cub, &cub->textures[i], cub->textures[i].path))
+			return (-1);
+		if (cub->textures[i].img.w != TEX_SIZE
+			|| cub->textures[i].img.h != TEX_SIZE)
+		{
+			mlx_destroy_image(cub->mlx, cub->textures[i].img.ptr);
+			return (-1);
+		}
+		i++;
+	}
+	return (load_door_texture(cub));
 }

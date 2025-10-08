@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 17:36:25 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 10:48:12 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:18:51 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	raycaster(t_cub *cub)
 	t_ray	r;
 	int		x;
 
+	if (!cub->z_buffer)
+		return ;
 	x = 0;
 	while (x < WIN_W)
 	{

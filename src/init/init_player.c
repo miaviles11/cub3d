@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:50:59 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/07 19:14:56 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:45:51 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,61 @@ static void	set_plane(t_player *p)
 		p->plane = (t_vec){-FOV, 0};
 }
 
-static void	init_data(t_cub *cub, char c, int x, int y)
+static void	set_dir_from_char(t_vec *dir, char c)
 {
-	cub->player.pos = (t_vec){x + 0.5, y + 0.5};
-	cub->map.grid[y][x] = '0';
-	cub->player.dir = (t_vec){(c == 'E') - (c == 'W'),
-		(c == 'S') - (c == 'N')};
+	dir->x = 0;
+	dir->y = 0;
+	if (c == 'E')
+		dir->x = 1;
+	else if (c == 'W')
+		dir->x = -1;
+	else if (c == 'S')
+		dir->y = 1;
+	else if (c == 'N')
+		dir->y = -1;
+}
+
+static void	init_bonus_features(t_cub *cub)
+{
 	init_jump(&cub->player);
-	set_plane(&cub->player);
 	cub->door_flash_timer = 0;
 	cub->door_flash_x = 0;
 	cub->door_flash_y = 0;
 }
 
-int	init_player(t_cub *cub)
+static int	try_spawn(t_cub *cub, int y, int x)
 {
-	int		y;
-	int		x;
 	char	c;
 
-	y = -1;
-	while (++y < cub->map.h)
+	c = cub->map.grid[y][x];
+	if (c != 'N' && c != 'S' && c != 'E' && c != 'W')
+		return (0);
+	cub->player.pos = (t_vec){x + 0.5, y + 0.5};
+	cub->map.grid[y][x] = '0';
+	set_dir_from_char(&cub->player.dir, c);
+	set_plane(&cub->player);
+	init_bonus_features(cub);
+	return (1);
+}
+
+int	init_player(t_cub *cub)
+{
+	int	y;
+	int	x;
+
+	if (!cub)
+		return (-1);
+	y = 0;
+	while (y < cub->map.h)
 	{
-		x = -1;
-		while (++x < cub->map.w)
+		x = 0;
+		while (x < cub->map.w)
 		{
-			c = cub->map.grid[y][x];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-			{
-				init_data(cub, c, x, y);
+			if (try_spawn(cub, y, x))
 				return (0);
-			}
+			x++;
 		}
+		y++;
 	}
 	return (-1);
 }
