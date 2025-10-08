@@ -5,12 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 20:25:35 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:19:03 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:40:09 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/08 15:48:26 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+static int	is_valid_char(char c)
+{
+	if (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S')
+		return (1);
+	if (c == 'E' || c == 'W' || c == 'D' || c == '2')
+		return (1);
+	return (0);
+}
 
 static int	scan_chars_and_spawn(t_map *m, int *spawn)
 {
@@ -28,18 +37,18 @@ static int	scan_chars_and_spawn(t_map *m, int *spawn)
 			if (!is_valid_char(c))
 				return (-1);
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-				++(*spawn);
-			++x;
+				(*spawn)++;
+			x++;
 		}
-		++y;
+		y++;
 	}
 	return (0);
 }
 
 static int	check_closure(t_map *m)
 {
-	int		y;
-	int		x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (y < m->h)
@@ -50,9 +59,9 @@ static int	check_closure(t_map *m)
 			if (is_walkable(m->grid[y][x])
 				&& touches_space_or_border(m, y, x))
 				return (-1);
-			++x;
+			x++;
 		}
-		++y;
+		y++;
 	}
 	return (0);
 }

@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 16:37:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:17:00 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:40:25 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/08 15:59:52 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/* store a duplicate into the list, stripping trailing newlines ------------ */
+/* store a duplicate into the list, stripping trailing newlines ------------- */
 static int	store_line(t_list **lst, char *line)
 {
 	char	*dup;
@@ -23,7 +23,10 @@ static int	store_line(t_list **lst, char *line)
 		return (-1);
 	end = dup + ft_strlen(dup) - 1;
 	while (end >= dup && (*end == '\n' || *end == '\r'))
-		*end-- = '\0';
+	{
+		*end = '\0';
+		end--;
+	}
 	ft_lstadd_back(lst, ft_lstnew(dup));
 	return (0);
 }
@@ -47,33 +50,22 @@ static int	read_file(int fd, t_list **lst)
 	return (0);
 }
 
-/* process metadata and then initialize the map ---------------------------- */
+/* process metadata and then initialize the map ----------------------------- */
 static int	process_meta(t_cub *cub, t_list *node, const char *path)
 {
-	char	*str;
-	char	*s;
+	int	floor_set;
+	int	ceil_set;
 
-	while (node)
-	{
-		str = (char *)node->content;
-		s = skip_spaces(str);
-		if ((*s == 'N' || *s == 'S' || *s == 'W' || *s == 'E')
-			&& parse_texture_line(cub, s))
-			return (-1);
-		if (*s == 'F' && parse_color_line(&cub->floor_color, s))
-			return (-1);
-		if (*s == 'C' && parse_color_line(&cub->ceil_color, s))
-			return (-1);
-		if (is_map_line(s))
-			break ;
-		node = node->next;
-	}
-	if (!node)
+	floor_set = 0;
+	ceil_set = 0;
+	if (scan_header(cub, &node, &floor_set, &ceil_set))
+		return (-1);
+	if (validate_header_complete(cub, node != NULL, floor_set, ceil_set))
 		return (-1);
 	return (init_map(cub, path));
 }
 
-/* PUBLIC: parse entire scene file (.cub) ---------------------------------- */
+/* PUBLIC: parse entire scene file (.cub) ----------------------------------- */
 int	parse_scene(t_cub *cub, const char *path)
 {
 	int		fd;

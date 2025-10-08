@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 12:44:04 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:29:51 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,18 @@ int		parse_sprites(t_cub *cub);
 char	*skip_spaces(char *s);
 int		parse_int(const char **str, int *out);
 
+/*process_meta_helpers.c*/
+int	scan_header(t_cub *cub, t_list **node,
+	int *floor_set, int *ceil_set);
+int	validate_header_complete(t_cub *cub,
+	int node_exists, int floor_set, int ceil_set);
+
 /* ========================================================================== */
 /*                          MAP UTILITIES                                     */
 /* ========================================================================== */
 
 int		is_walk(char c);
 int		out_of_bounds(t_map *m, int y, int x);
-int		is_valid_char(char c);
 int		is_walkable(char c);
 int		touches_space_or_border(t_map *m, int y, int x);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normalize_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 16:39:13 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/06 16:39:17 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:40:11 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:40:11 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static char	*pad_line(char *src, int w)
 			dst[i] = ' ';
 		else
 			dst[i] = src[i];
-		++i;
+		i++;
 	}
 	while (i < w)
 	{
 		dst[i] = ' ';
-		++i;
+		i++;
 	}
 	dst[w] = '\0';
 	return (dst);
@@ -51,7 +51,7 @@ int	normalize_map(t_map *map)
 			return (-1);
 		free(map->grid[y]);
 		map->grid[y] = new_line;
-		++y;
+		y++;
 	}
 	return (0);
 }

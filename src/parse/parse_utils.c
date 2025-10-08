@@ -5,26 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 16:37:22 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:17:30 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:40:22 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/08 15:52:32 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/* -------------------------------------------------------------------------- */
-/*  Trim leading spaces/tabs                                                  */
-/* -------------------------------------------------------------------------- */
+/*
+** Trim leading spaces/tabs
+*/
 char	*skip_spaces(char *s)
 {
 	while (*s == ' ' || *s == '\t')
-		++s;
+		s++;
 	return (s);
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Read an integer, advance ptr, store in out                                */
-/* -------------------------------------------------------------------------- */
+/*
+** Read an integer, advance ptr, store in out
+*/
 int	parse_int(const char **str, int *out)
 {
 	int	val;
@@ -36,7 +36,7 @@ int	parse_int(const char **str, int *out)
 	while (**str >= '0' && **str <= '9')
 	{
 		val = val * 10 + (**str - '0');
-		++(*str);
+		(*str)++;
 	}
 	*out = val;
 	return (0);
@@ -65,7 +65,7 @@ int	is_map_line(const char *s)
 	int	has_tile;
 
 	while (*s == '\t')
-		++s;
+		s++;
 	if (*s == '\0')
 		return (0);
 	if (is_identifier(s))
@@ -73,15 +73,16 @@ int	is_map_line(const char *s)
 	has_tile = 0;
 	while (*s && *s != '\n' && *s != '\r')
 	{
-		if (*s == ' ' || *s == '0' || *s == '1' || *s == 'N' || *s == 'S'
-			|| *s == 'E' || *s == 'W' || *s == 'D' || *s == '2')
+		if (*s == ' ' || *s == '0' || *s == '1'
+			|| *s == 'N' || *s == 'S' || *s == 'E' || *s == 'W'
+			|| *s == 'D' || *s == '2')
 		{
 			if (*s != ' ')
 				has_tile = 1;
 		}
 		else
 			return (0);
-		++s;
+		s++;
 	}
 	return (has_tile);
 }

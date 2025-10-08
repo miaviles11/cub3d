@@ -5,31 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 18:28:32 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:19:44 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:40:05 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/08 15:47:22 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+/* check if a map cell is walkable */
 int	is_walk(char c)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == 'D' || c == '2');
+	return (c == '0'
+		|| c == 'N'
+		|| c == 'S'
+		|| c == 'E'
+		|| c == 'W'
+		|| c == 'D'
+		|| c == '2');
 }
 
+/* check if (y, x) is outside the map bounds */
 int	out_of_bounds(t_map *m, int y, int x)
 {
-	return (y < 0 || x < 0 || y >= m->h || x >= m->w);
-}
-
-int	is_valid_char(char c)
-{
-	if (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S')
-		return (1);
-	if (c == 'E' || c == 'W' || c == 'D' || c == '2')
-		return (1);
-	return (0);
+	return (y < 0
+		|| x < 0
+		|| y >= m->h
+		|| x >= m->w);
 }
 
 int	is_walkable(char c)
