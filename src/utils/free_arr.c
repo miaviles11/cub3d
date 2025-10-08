@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_arr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 10:52:18 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 10:52:22 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:41:15 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:41:15 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_arr(char **arr)
 	while (arr[i])
 	{
 		free(arr[i]);
-		++i;
+		i++;
 	}
 	free(arr);
 }

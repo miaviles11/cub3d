@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   movement_subdiv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: miaviles <miaviles@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 19:50:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:23:03 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:40:40 by miaviles          #+#    #+#             */
+/*   Updated: 2025/09/30 14:40:40 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	subdivide_movement_steps(t_cub *c, double total_dx, double total_dy,
-									int steps)
+/*
+** Subdivide the movement into 'steps' and apply wall sliding each step.
+*/
+static void	subdivide_movement_steps(t_cub *c,
+		double total_dx, double total_dy, int steps)
 {
-	double	step_dx;
-	double	step_dy;
-	int		i;
+	const double	step_dx = total_dx / (double)steps;
+	const double	step_dy = total_dy / (double)steps;
+	int				i;
 
-	step_dx = total_dx / steps;
-	step_dy = total_dy / steps;
 	i = 0;
 	while (i < steps)
 	{
@@ -29,6 +30,9 @@ void	subdivide_movement_steps(t_cub *c, double total_dx, double total_dy,
 	}
 }
 
+/*
+** PUBLIC: adaptive movement subdivision
+*/
 void	subdiv_move(t_cub *c, double total_dx, double total_dy)
 {
 	double	dist;
@@ -50,5 +54,7 @@ void	subdiv_move(t_cub *c, double total_dx, double total_dy)
 		return ;
 	}
 	steps = (int)ceil(dist / MAX_MOVE_STEP);
+	if (steps < 1)
+		steps = 1;
 	subdivide_movement_steps(c, total_dx, total_dy, steps);
 }

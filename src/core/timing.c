@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   timing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 18:05:18 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/17 18:06:30 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:39:38 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:39:38 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+/* ------------------------------------------------------------------------ */
 double	timer_delta(void)
 {
 	static struct timeval	prev;
@@ -32,6 +33,7 @@ double	timer_delta(void)
 	return (dt);
 }
 
+/* ------------------------------------------------------------------------ */
 void	timer_sleep(long target_fps, double dt)
 {
 	struct timeval	start;

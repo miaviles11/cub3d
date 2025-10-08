@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 10:52:57 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 10:53:19 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:41:24 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:41:24 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/* -------------------------------------------------------------------------- */
-/*  Devuelve el directorio de `path` (sin el nombre del fichero)              */
-/*  Ej.: "/foo/bar/map.cub"  ->  "/foo/bar"                                   */
-/* -------------------------------------------------------------------------- */
+/*
+** Return the directory part of `path` (without the filename).
+** Example: "/foo/bar/map.cub" -> "/foo/bar"
+*/
 char	*ft_dirname(const char *path)
 {
 	size_t	i;
@@ -25,9 +25,9 @@ char	*ft_dirname(const char *path)
 		return (ft_strdup("."));
 	i = 0;
 	while (path[i])
-		++i;
+		i++;
 	while (i && path[i - 1] != '/')
-		--i;
+		i--;
 	if (i == 0)
 		return (ft_strdup("."));
 	dir = (char *)malloc(i + 1);
@@ -38,9 +38,9 @@ char	*ft_dirname(const char *path)
 	return (dir);
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Une `dir` + "/" + `file`  →  string nuevo                                 */
-/* -------------------------------------------------------------------------- */
+/*
+** Join `dir` + "/" + `file` into a newly allocated string.
+*/
 char	*path_join(const char *dir, const char *file)
 {
 	char	*tmp;
@@ -54,16 +54,23 @@ char	*path_join(const char *dir, const char *file)
 	return (joined);
 }
 
+/*
+** Build the parent path of `dir` (i.e., dir + "/..").
+*/
 char	*ft_path_parent(const char *dir)
 {
 	return (path_join(dir, ".."));
 }
 
-/* 0 = no existe, 1 = existe y es legible */
+/*
+** Returns 1 if `path` exists and is readable, 0 otherwise.
+*/
 int	file_exists(const char *path)
 {
 	int	fd;
 
+	if (!path || !*path)
+		return (0);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (0);

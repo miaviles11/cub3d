@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:40:05 by carlsanc          #+#    #+#             */
-/*   Updated: 2025/10/08 15:47:22 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/09/30 14:40:05 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	is_walk(char c)
 		|| c == 'N'
 		|| c == 'S'
 		|| c == 'E'
-		|| c == 'W'
-		|| c == 'D'
-		|| c == '2');
+		|| c == 'W');
 }
 
 /* check if (y, x) is outside the map bounds */
@@ -36,8 +34,6 @@ int	out_of_bounds(t_map *m, int y, int x)
 int	is_walkable(char c)
 {
 	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	if (c == '2' || c == 'D')
 		return (1);
 	return (0);
 }

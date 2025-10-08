@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_custom.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:33:45 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/17 17:33:48 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/01 15:30:10 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/01 15:30:10 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

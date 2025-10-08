@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:40:22 by carlsanc          #+#    #+#             */
-/*   Updated: 2025/10/08 15:52:32 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/09/30 14:40:22 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	parse_int(const char **str, int *out)
 	return (0);
 }
 
-/* -------------------------------------------------------------------------- */
-/*  A line belongs to the map iff:                                            */
-/*   - No es un identificador (NO, SO, WE, EA, F, C).                         */
-/*   - Contiene SOLO {' ', '0','1','N','S','E','W','D','2'} hasta fin de línea*/
-/*   - Contiene al menos un tile real (no solo espacios).                     */
-/*  Nota: solo se saltan TABS de cabecera; los espacios son significativos.   */
-/* -------------------------------------------------------------------------- */
+/*
+** A line is a map line if:
+** - It is not an identifier (NO, SO, WE, EA, F, C)
+** - It contains only {' ', '0','1','N','S','E','W'} until EOL
+** - It has at least one non-space tile
+** Note: leading tabs are allowed; in map, space is significant.
+*/
 static int	is_identifier(const char *s)
 {
 	if ((s[0] == 'N' && s[1] == 'O') || (s[0] == 'S' && s[1] == 'O'))
@@ -74,8 +74,7 @@ int	is_map_line(const char *s)
 	while (*s && *s != '\n' && *s != '\r')
 	{
 		if (*s == ' ' || *s == '0' || *s == '1'
-			|| *s == 'N' || *s == 'S' || *s == 'E' || *s == 'W'
-			|| *s == 'D' || *s == '2')
+			|| *s == 'N' || *s == 'S' || *s == 'E' || *s == 'W')
 		{
 			if (*s != ' ')
 				has_tile = 1;

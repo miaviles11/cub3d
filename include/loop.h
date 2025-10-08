@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:33:35 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/17 17:33:38 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/01 15:30:07 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/01 15:30:07 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

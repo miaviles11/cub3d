@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:31:12 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 21:17:42 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:41:31 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:41:31 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	error_exit(const char *msg)
 	while (*msg)
 	{
 		write(STDERR_FILENO, msg, 1);
-		++msg;
+		msg++;
 	}
 	write(STDERR_FILENO, "\n", 1);
 	exit(EXIT_FAILURE);
@@ -32,11 +32,14 @@ static int	has_cub_extension(const char *file)
 		return (0);
 	i = 0;
 	while (file[i])
-		++i;
+		i++;
 	if (i < 5)
 		return (0);
-	return (file[i - 4] == '.' && file[i - 3] == 'c' && file[i - 2] == 'u'
-		&& file[i - 1] == 'b');
+	if (file[i - 4] != '.' || file[i - 3] != 'c')
+		return (0);
+	if (file[i - 2] != 'u' || file[i - 1] != 'b')
+		return (0);
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -46,12 +49,13 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_exit("Usage: ./cub3D <map.cub>");
 	if (!has_cub_extension(argv[1]))
-		error_exit("Map file must have .cub extension");
+		error_exit("Invalid file extension: expected .cub");
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		error_exit("Map file not found");
-	close(fd);
+		error_exit("Map file not found or not readable");
+	if (close(fd) < 0)
+		error_exit("Failed to close map file");
 	if (cub3d_run(argv[1]) != 0)
-		return (EXIT_FAILURE);
+		error_exit("cub3D terminated unexpectedly");
 	return (EXIT_SUCCESS);
 }

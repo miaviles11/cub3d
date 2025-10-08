@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:33:56 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 18:32:39 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/01 15:30:13 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/01 15:30:13 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PATH_UTILS_H
 # define PATH_UTILS_H
 
+/* duplica la parte “directorio” de una ruta (sin el nombre del fichero)     */
 char	*ft_dirname(const char *path);
+
+/* une dir + "/" + file  →  nuevo malloc                                      */
 char	*path_join(const char *dir, const char *file);
 char	*ft_path_parent(const char *dir);
 int		file_exists(const char *path);

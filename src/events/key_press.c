@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 18:03:49 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:54:19 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:39:48 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:39:48 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,5 @@ int	key_press(int keycode, void *param)
 		cub->keys.left = 1;
 	else if (keycode == KEY_RIGHT)
 		cub->keys.right = 1;
-	else if (keycode == KEY_SPACE)
-		cub->keys.space = 1;
-	else if (keycode == KEY_E)
-		handle_door_interaction(cub);
 	return (0);
 }

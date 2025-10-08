@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 19:07:11 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/05 20:18:25 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:40:44 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:40:44 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,21 @@ static void	try_move_y(t_cub *c, double dy)
 		c->player.pos.y = ny;
 }
 
+/*
+** Smooth axis-by-axis movement (for residuals after collision)
+*/
 void	try_smooth_move(t_cub *c, double dx, double dy)
 {
 	try_move_x(c, dx);
 	try_move_y(c, dy);
+}
+
+int	check_collision_corners(t_cub *c, double x, double y, double r)
+{
+	if (is_point_wall(c, x - r, y - r)
+		|| is_point_wall(c, x + r, y - r)
+		|| is_point_wall(c, x - r, y + r)
+		|| is_point_wall(c, x + r, y + r))
+		return (1);
+	return (0);
 }

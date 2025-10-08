@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:50:59 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 17:45:51 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:39:59 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:39:59 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,6 @@ static void	set_dir_from_char(t_vec *dir, char c)
 		dir->y = -1;
 }
 
-static void	init_bonus_features(t_cub *cub)
-{
-	init_jump(&cub->player);
-	cub->door_flash_timer = 0;
-	cub->door_flash_x = 0;
-	cub->door_flash_y = 0;
-}
-
 static int	try_spawn(t_cub *cub, int y, int x)
 {
 	char	c;
@@ -57,7 +49,6 @@ static int	try_spawn(t_cub *cub, int y, int x)
 	cub->map.grid[y][x] = '0';
 	set_dir_from_char(&cub->player.dir, c);
 	set_plane(&cub->player);
-	init_bonus_features(cub);
 	return (1);
 }
 

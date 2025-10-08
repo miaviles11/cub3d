@@ -3,70 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/08 12:19:21 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 12:43:29 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:39:26 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:39:26 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	cleanup_memory_resources(t_cub *cub)
+/* ------------------------------------------------------------------------ */
+static void	free_grid(char **grid)
 {
-	if (cub->z_buffer)
-	{
-		free(cub->z_buffer);
-		cub->z_buffer = NULL;
-	}
-	if (cub->doors.doors)
-	{
-		free(cub->doors.doors);
-		cub->doors.doors = NULL;
-	}
-	if (cub->map.grid)
-	{
-		free_grid(cub->map.grid, cub->map.h);
-		cub->map.grid = NULL;
-	}
-	if (cub->map_dir)
-	{
-		free(cub->map_dir);
-		cub->map_dir = NULL;
-	}
-}
+	int	i;
 
-void	cleanup_graphics_resources(t_cub *cub)
-{
-	free_sprites(cub);
-	free_weapon(cub);
-	free_textures(cub);
-	if (cub->screen.ptr && cub->mlx)
-	{
-		mlx_destroy_image(cub->mlx, cub->screen.ptr);
-		cub->screen.ptr = NULL;
-	}
-}
-
-void	cleanup_game_resources(t_cub *cub)
-{
-	if (!cub)
+	if (!grid)
 		return ;
-	cleanup_memory_resources(cub);
-	cleanup_graphics_resources(cub);
+	i = 0;
+	while (grid[i])
+	{
+		free(grid[i]);
+		i++;
+	}
+	free(grid);
 }
 
+/* ------------------------------------------------------------------------ */
+static void	free_textures(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (cub->textures[i].img.ptr)
+			mlx_destroy_image(cub->mlx, cub->textures[i].img.ptr);
+		free(cub->textures[i].path);
+		i++;
+	}
+}
+
+/* ------------------------------------------------------------------------ */
 void	cub_cleanup(t_cub *cub)
 {
 	if (!cub)
 		return ;
-	cleanup_game_resources(cub);
+	free(cub->map_dir);
+	free_grid(cub->map.grid);
+	free_textures(cub);
+	if (cub->screen.ptr)
+		mlx_destroy_image(cub->mlx, cub->screen.ptr);
+	if (cub->win)
+		mlx_destroy_window(cub->mlx, cub->win);
 	if (cub->mlx)
 	{
-		if (cub->win)
-			mlx_destroy_window(cub->mlx, cub->win);
 		mlx_destroy_display(cub->mlx);
 		free(cub->mlx);
-		cub->mlx = NULL;
 	}
 }

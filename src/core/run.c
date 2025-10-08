@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:33:04 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 17:35:23 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:39:35 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:39:35 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ static int	step_init_textures(t_cub *cub)
 		return (fail(cub,
 				"Texture load failed: missing file or wrong size "
 				"(64x64 required)"));
-	return (0);
-}
-
-static int	step_init_sprites(t_cub *cub)
-{
-	if (sprites_load_all(cub))
-		return (fail(cub,
-				"Sprite textures failed to load"));
 	return (0);
 }
 
@@ -64,8 +56,6 @@ int	cub3d_run(const char *map_path)
 	if (step_init_mlx(&cub))
 		return (-1);
 	if (step_init_textures(&cub))
-		return (-1);
-	if (step_init_sprites(&cub))
 		return (-1);
 	if (step_init_player(&cub))
 		return (-1);

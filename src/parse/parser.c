@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:40:25 by carlsanc          #+#    #+#             */
-/*   Updated: 2025/10/08 20:49:36 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/09/30 14:40:25 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static int	read_file(int fd, t_list **lst)
 		if (store_line(lst, line))
 		{
 			free(line);
-			gnl_drain(fd);
 			return (-1);
 		}
 		free(line);
@@ -76,16 +75,13 @@ int	parse_scene(t_cub *cub, const char *path)
 	if (fd < 0)
 		return (-1);
 	lst = NULL;
-	if (read_file(fd, &lst) || process_meta(cub, lst, path) || check_map(cub)
-		|| parse_doors(cub) || parse_sprites(cub))
+	if (read_file(fd, &lst) || process_meta(cub, lst, path) || check_map(cub))
 	{
 		ft_lstclear(&lst, free);
-		gnl_drain(fd);
 		close(fd);
 		return (-1);
 	}
 	ft_lstclear(&lst, free);
-	gnl_drain(fd);
 	close(fd);
 	return (0);
 }

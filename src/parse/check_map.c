@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:40:09 by carlsanc          #+#    #+#             */
-/*   Updated: 2025/10/08 15:48:26 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/09/30 14:40:09 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	is_valid_char(char c)
 {
 	if (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S')
 		return (1);
-	if (c == 'E' || c == 'W' || c == 'D' || c == '2')
+	if (c == 'E' || c == 'W')
 		return (1);
 	return (0);
 }

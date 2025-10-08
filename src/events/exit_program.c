@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_program.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 18:03:27 by miaviles          #+#    #+#             */
-/*   Updated: 2025/07/17 18:03:28 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:39:41 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:39:41 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

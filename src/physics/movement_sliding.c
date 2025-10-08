@@ -3,79 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   movement_sliding.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: miaviles <miaviles@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 20:17:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:10:41 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:40:33 by miaviles          #+#    #+#             */
+/*   Updated: 2025/09/30 14:40:33 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static double	binary_search_safe_distance(t_cub *c, t_move_data *md)
+/*
+** Binary search for the largest safe fraction of the displacement.
+*/
+static double	binary_search_safe_distance(t_cub *c, t_vec pos, t_vec d)
 {
-	double	safe_ratio;
-	double	test_ratio;
 	double	low;
 	double	high;
+	double	safe;
+	double	mid;
 
-	safe_ratio = 0.0;
 	low = 0.0;
 	high = 1.0;
+	safe = 0.0;
 	while (high - low > EPS)
 	{
-		test_ratio = (low + high) * 0.5;
-		if (!is_wall(c, md->start_x + md->dx * test_ratio,
-				md->start_y + md->dy * test_ratio))
+		mid = 0.5 * (low + high);
+		if (!is_wall(c, pos.x + d.x * mid, pos.y + d.y * mid))
 		{
-			safe_ratio = test_ratio;
-			low = test_ratio;
+			safe = mid;
+			low = mid;
 		}
 		else
-			high = test_ratio;
+			high = mid;
 	}
-	return (safe_ratio);
+	return (safe);
 }
 
-double	find_safe_distance(t_cub *c, t_move_data *md)
+/*
+** Extension point;
+*/
+static double	find_safe_distance(t_cub *c, t_vec pos, t_vec d)
 {
-	int	iterations;
-
-	iterations = 0;
-	while (iterations < 15)
-	{
-		iterations++;
-	}
-	return (binary_search_safe_distance(c, md));
+	return (binary_search_safe_distance(c, pos, d));
 }
 
-static void	handle_remaining_movement(t_cub *c, t_move_data *md,
-									double safe_ratio)
+static void	handle_remaining_movement(t_cub *c, double dx, double dy, double t)
 {
-	double	remaining_dx;
-	double	remaining_dy;
+	double	rx;
+	double	ry;
 
-	remaining_dx = md->dx * (1.0 - safe_ratio);
-	remaining_dy = md->dy * (1.0 - safe_ratio);
-	if (fabs(remaining_dx) > EPS || fabs(remaining_dy) > EPS)
-		try_smooth_move(c, remaining_dx, remaining_dy);
+	rx = dx * (1.0 - t);
+	ry = dy * (1.0 - t);
+	if (fabs(rx) > EPS || fabs(ry) > EPS)
+		try_smooth_move(c, rx, ry);
 }
 
+/*
+** PUBLIC: apply smooth wall sliding on partial collision.
+*/
 void	apply_wall_sliding(t_cub *c, double dx, double dy)
 {
-	t_move_data	md;
-	double		safe_ratio;
+	t_vec	pos;
+	t_vec	d;
+	double	t;
 
-	md.start_x = c->player.pos.x;
-	md.start_y = c->player.pos.y;
-	md.dx = dx;
-	md.dy = dy;
-	safe_ratio = find_safe_distance(c, &md);
-	if (safe_ratio > EPS)
+	pos = c->player.pos;
+	d.x = dx;
+	d.y = dy;
+	t = find_safe_distance(c, pos, d);
+	if (t > EPS)
 	{
-		c->player.pos.x += dx * safe_ratio;
-		c->player.pos.y += dy * safe_ratio;
-		handle_remaining_movement(c, &md, safe_ratio);
+		c->player.pos.x += dx * t;
+		c->player.pos.y += dy * t;
+		handle_remaining_movement(c, dx, dy, t);
 	}
 	else
 		try_smooth_move(c, dx, dy);

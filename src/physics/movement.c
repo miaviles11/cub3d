@@ -3,22 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 19:09:49 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:16:23 by miaviles         ###   ########.fr       */
+/*   Created: 2025/09/30 14:40:47 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/09/30 14:40:47 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	move(t_cub *c, double dx, double dy)
-{
-	if (fabs(dx) < MIN_MOVE_DISTANCE && fabs(dy) < MIN_MOVE_DISTANCE)
-		return ;
-	wall_slide_move(c, dx, dy);
-}
-
+/*
+** Player rotation
+*/
 void	rotate_player(t_player *p, double angle)
 {
 	double	old_dir_x;
@@ -32,31 +28,36 @@ void	rotate_player(t_player *p, double angle)
 	p->plane.y = old_plane_x * sin(angle) + p->plane.y * cos(angle);
 }
 
-static void	calculate_movement_wasd(t_cub *c, double *total_dx,
-		double *total_dy)
+/*
+** Accumulate WASD displacement based on dir/plane
+*/
+static void	calculate_movement_wasd(t_cub *c, double *dx, double *dy)
 {
 	if (c->keys.w)
 	{
-		*total_dx += c->player.dir.x * MOVE_SPEED;
-		*total_dy += c->player.dir.y * MOVE_SPEED;
+		*dx += c->player.dir.x * MOVE_SPEED;
+		*dy += c->player.dir.y * MOVE_SPEED;
 	}
 	if (c->keys.s)
 	{
-		*total_dx -= c->player.dir.x * MOVE_SPEED;
-		*total_dy -= c->player.dir.y * MOVE_SPEED;
+		*dx -= c->player.dir.x * MOVE_SPEED;
+		*dy -= c->player.dir.y * MOVE_SPEED;
 	}
 	if (c->keys.a)
 	{
-		*total_dx += c->player.dir.y * MOVE_SPEED;
-		*total_dy -= c->player.dir.x * MOVE_SPEED;
+		*dx += c->player.dir.y * MOVE_SPEED;
+		*dy -= c->player.dir.x * MOVE_SPEED;
 	}
 	if (c->keys.d)
 	{
-		*total_dx -= c->player.dir.y * MOVE_SPEED;
-		*total_dy += c->player.dir.x * MOVE_SPEED;
+		*dx -= c->player.dir.y * MOVE_SPEED;
+		*dy += c->player.dir.x * MOVE_SPEED;
 	}
 }
 
+/*
+** Arrow keys rotation
+*/
 static void	handle_rotation(t_cub *c)
 {
 	if (c->keys.left)
@@ -65,6 +66,9 @@ static void	handle_rotation(t_cub *c)
 		rotate_player(&c->player, ROT_SPEED);
 }
 
+/*
+** PUBLIC: movement update (subdivision + sliding)
+*/
 int	movement_update(t_cub *c)
 {
 	double	total_dx;
@@ -73,9 +77,9 @@ int	movement_update(t_cub *c)
 	total_dx = 0.0;
 	total_dy = 0.0;
 	calculate_movement_wasd(c, &total_dx, &total_dy);
-	if (fabs(total_dx) > EPS || fabs(total_dy) > EPS)
+	if (fabs(total_dx) > MIN_MOVE_DISTANCE
+		|| fabs(total_dy) > MIN_MOVE_DISTANCE)
 		subdiv_move(c, total_dx, total_dy);
 	handle_rotation(c);
-	update_jump(c);
 	return (0);
 }
