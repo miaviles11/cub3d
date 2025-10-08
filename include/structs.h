@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 13:55:21 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 18:42:55 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 12:35:44 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ typedef struct s_cub
 	t_door_list		doors;
 	t_sprite_list	sprites;
 	t_weapon		weapon;
-	double			z_buffer[1280];
+	double			*z_buffer;
 	int				floor_color;
 	int				ceil_color;
 	char			*map_dir;

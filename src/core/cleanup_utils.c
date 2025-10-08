@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 12:18:56 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 12:18:59 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 12:43:15 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	free_textures(t_cub *cub)
 {
 	int	i;
 
-	if (!cub->mlx)
+	if (!cub || !cub->mlx)
 		return ;
 	i = 0;
 	while (i < cub->texture_count)
@@ -49,7 +49,7 @@ void	free_sprites(t_cub *cub)
 {
 	int	i;
 
-	if (!cub->sprites.sprites)
+	if (!cub || !cub->sprites.sprites)
 		return ;
 	i = 0;
 	while (i < cub->sprites.count)
@@ -63,25 +63,10 @@ void	free_sprites(t_cub *cub)
 
 void	free_weapon(t_cub *cub)
 {
-	if (!cub->mlx || !cub->weapon.initialized)
+	if (!cub || !cub->mlx || !cub->weapon.initialized)
 		return ;
 	if (cub->weapon.idle.ptr)
 		mlx_destroy_image(cub->mlx, cub->weapon.idle.ptr);
 	if (cub->weapon.fire.ptr)
 		mlx_destroy_image(cub->mlx, cub->weapon.fire.ptr);
-}
-
-void	cleanup_game_resources(t_cub *cub)
-{
-	free_sprites(cub);
-	free_weapon(cub);
-	free_textures(cub);
-	if (cub->doors.doors)
-		free(cub->doors.doors);
-	if (cub->screen.ptr && cub->mlx)
-		mlx_destroy_image(cub->mlx, cub->screen.ptr);
-	if (cub->map.grid)
-		free_grid(cub->map.grid, cub->map.h);
-	if (cub->map_dir)
-		free(cub->map_dir);
 }

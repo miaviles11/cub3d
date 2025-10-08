@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:58:03 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 17:29:39 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 12:25:20 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int	load_weapon_img(void *mlx, const char *path, t_img *out)
 	out->data = (int *)mlx_get_data_addr(ptr, &out->bpp,
 			&out->line_len, &out->endian);
 	if (!out->data)
+	{
+		mlx_destroy_image(mlx, ptr);
+		out->ptr = NULL;
 		return (-1);
+	}
 	return (0);
 }
 

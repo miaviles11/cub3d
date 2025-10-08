@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:33:04 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 12:15:29 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 12:38:14 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 static int	fail(t_cub *cub, const char *msg)
 {
 	cub_error(cub, msg);
-	cub_cleanup(cub);
 	return (-1);
 }
 
 static int	init_game(t_cub *cub, const char *map_path)
 {
 	ft_bzero(cub, sizeof(t_cub));
+	cub->z_buffer = malloc(sizeof(double) * WIN_W);
+	if (!cub->z_buffer)
+		return (fail(cub, "malloc failed (z_buffer)"));
 	cub->map_dir = ft_dirname(map_path);
 	if (!cub->map_dir)
 		return (fail(cub, "malloc failed (map_dir)"));
@@ -43,7 +45,10 @@ int	cub3d_run(const char *map_path)
 	t_cub	cub;
 
 	if (init_game(&cub, map_path))
+	{
+		cub_cleanup(&cub);
 		return (-1);
+	}
 	if (set_hooks(&cub))
 	{
 		cub_cleanup(&cub);
