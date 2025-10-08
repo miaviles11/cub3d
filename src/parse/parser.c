@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:40:25 by carlsanc          #+#    #+#             */
-/*   Updated: 2025/10/08 15:59:52 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 20:49:36 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static int	read_file(int fd, t_list **lst)
 		if (store_line(lst, line))
 		{
 			free(line);
+			gnl_drain(fd);
 			return (-1);
 		}
 		free(line);
@@ -79,10 +80,12 @@ int	parse_scene(t_cub *cub, const char *path)
 		|| parse_doors(cub) || parse_sprites(cub))
 	{
 		ft_lstclear(&lst, free);
+		gnl_drain(fd);
 		close(fd);
 		return (-1);
 	}
 	ft_lstclear(&lst, free);
+	gnl_drain(fd);
 	close(fd);
 	return (0);
 }

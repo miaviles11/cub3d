@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:12 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 11:20:08 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 21:17:42 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int	main(int argc, char **argv)
 		error_exit("Map file not found");
 	close(fd);
 	if (cub3d_run(argv[1]) != 0)
-		error_exit("cub3D terminated unexpectedly");
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
