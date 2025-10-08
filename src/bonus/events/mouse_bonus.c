@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: miaviles <miaviles@student.42madrid>       +#+  :+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:40:38 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 20:00:22 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/07 21:30:00 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 void	weapon_on_click(t_cub *c);
 void	shoot_try(t_cub *c);
+
+int	configure_notify(void *param)
+{
+	(void)param;
+	return (0);
+}
 
 int	set_hooks(t_cub *cub)
 {
@@ -24,8 +30,7 @@ int	set_hooks(t_cub *cub)
 	mlx_hook(cub->win, 6, 1L << 6, mouse_move, cub);
 	mlx_hook(cub->win, 4, 1L << 2, mouse_press, cub);
 	mlx_hook(cub->win, 17, 0, exit_program, cub);
-	mlx_hook(cub->win, 9, 1L << 21, focus_in, cub);
-	mlx_hook(cub->win, 10, 1L << 22, focus_out, cub);
+	mlx_hook(cub->win, 33, 1L << 19, configure_notify, cub);
 	mlx_loop_hook(cub->mlx, loop_hook, cub);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:33:04 by miaviles          #+#    #+#             */
-/*   Updated: 2025/08/09 16:48:04 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 12:15:29 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	fail(t_cub *cub, const char *msg)
 {
 	cub_error(cub, msg);
+	cub_cleanup(cub);
 	return (-1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/07 20:00:49 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 12:20:28 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@
 /* ========================================================================== */
 
 int		cub3d_run(const char *map_path);
+
+/* cleanup_utils.c */
+void	free_grid(char **grid, int height);
+void	free_textures(t_cub *cub);
+void	free_sprites(t_cub *cub);
+void	free_weapon(t_cub *cub);
+void	cleanup_game_resources(t_cub *cub);
+
+/* cleanup.c */
 void	cub_cleanup(t_cub *cub);
 
 /* ========================================================================== */
@@ -227,10 +236,6 @@ void	weapon_draw(t_cub *c);
 int		set_hooks(t_cub *cub);
 int		mouse_move(int x, int y, void *param);
 int		mouse_press(int button, int x, int y, void *param);
-
-/* focus_bonus.c */
-int		focus_in(void *param);
-int		focus_out(void *param);
 
 /* ========================================================================== */
 /*                          RENDERING - CORE                                  */
