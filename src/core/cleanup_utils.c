@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 12:18:56 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 12:43:15 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/08 12:56:22 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,23 @@ void	free_textures(t_cub *cub)
 {
 	int	i;
 
-	if (!cub || !cub->mlx)
-		return ;
-	i = 0;
-	while (i < cub->texture_count)
+	if (!cub)
+		return;
+
+	for (i = 0; i < MAX_TEXTURES; ++i)
 	{
-		if (cub->textures[i].img.ptr)
+		if (cub->mlx && cub->textures[i].img.ptr)
+		{
 			mlx_destroy_image(cub->mlx, cub->textures[i].img.ptr);
+			cub->textures[i].img.ptr = NULL;
+		}
 		if (cub->textures[i].path)
+		{
 			free(cub->textures[i].path);
-		i++;
+			cub->textures[i].path = NULL;
+		}
 	}
+	cub->texture_count = 0;
 }
 
 void	free_sprites(t_cub *cub)
