@@ -155,38 +155,6 @@ re: fclean all
 re_bonus: fclean bonus
 
 # ============================================================================ #
-#                                DEBUG                                         #
-# ============================================================================ #
-
-debug:
-	@echo "$(BLUE)╔════════════════════════════════════════════════════════════════╗$(RESET)"
-	@echo "$(BLUE)║                    PROJECT STRUCTURE                           ║$(RESET)"
-	@echo "$(BLUE)╚════════════════════════════════════════════════════════════════╝$(RESET)"
-	@echo ""
-	@echo "$(YELLOW)📁 MANDATORY (src/)$(RESET)"
-	@echo "   Source files: $(words $(SRCS))"
-	@echo "   Object files: $(words $(OBJS))"
-	@echo "   Includes: $(INC_DIR)/"
-	@echo ""
-	@echo "$(YELLOW)📁 BONUS (src_bonus/)$(RESET)"
-	@echo "   Source files: $(words $(SRCS_BONUS))"
-	@echo "   Object files: $(words $(OBJS_BONUS))"
-	@echo "   Includes: $(INC_BONUS)/"
-	@echo ""
-	@echo "$(GREEN)▶ MANDATORY FILES:$(RESET)"
-	@printf "   %s\n" $(SRCS) | head -10
-	@if [ $(words $(SRCS)) -gt 10 ]; then \
-		echo "   ... and $(shell echo $$(( $(words $(SRCS)) - 10 ))) more files"; \
-	fi
-	@echo ""
-	@echo "$(GREEN)▶ BONUS FILES:$(RESET)"
-	@printf "   %s\n" $(SRCS_BONUS) | head -10
-	@if [ $(words $(SRCS_BONUS)) -gt 10 ]; then \
-		echo "   ... and $(shell echo $$(( $(words $(SRCS_BONUS)) - 10 ))) more files"; \
-	fi
-	@echo ""
-
-# ============================================================================ #
 #                                 HELP                                         #
 # ============================================================================ #
 
@@ -215,4 +183,4 @@ help:
 #                                PHONY                                         #
 # ============================================================================ #
 
-.PHONY: all bonus clean fclean re re_bonus debug help
+.PHONY: all bonus clean fclean re re_bonus help
