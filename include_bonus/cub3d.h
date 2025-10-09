@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 17:30:37 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/09 10:38:17 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		cub3d_run(const char *map_path);
 /*core_utils.c*/
 int	init_basics(t_cub *cub, const char *map_path);
 int	fail(t_cub *cub, const char *msg);
+int	step_init_mlx(t_cub *cub);
 int	step_parse(t_cub *cub, const char *map_path);
 
 /* cleanup_utils.c */
@@ -69,13 +70,17 @@ int		init_player(t_cub *cub);
 int		load_tex(t_cub *c, t_texture *tex, char *orig);
 int		init_textures(t_cub *cub);
 
-/* init_textures_utils.c */
+/* init_textures_utils_1.c */
 int		is_nonempty_path(const char *s);
 void	*try_load(void *mlx, const char *path, int *w, int *h);
 void	*load_direct(t_cub *c, t_texture *tex, const char *orig);
 int		skip_to_map(int fd, char **line);
 void	gnl_drain(int fd);
 int		is_blank_line(const char *s);
+
+/* init_textures_utils_2.c */
+void	*load_from_mapdir(t_cub *c, t_texture *tex,
+		const char *orig, char **out_path);
 
 /* init_map.c */
 int		grow_grid(char ***grid, int *cap);

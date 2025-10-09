@@ -6,19 +6,11 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:33:04 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 21:59:35 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/09 10:25:42 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include_bonus/cub3d.h"
-
-static int	step_init_mlx(t_cub *cub)
-{
-	if (init_mlx(cub))
-		return (fail(cub,
-				"Failed to initialize graphics (MiniLibX/display)"));
-	return (0);
-}
 
 static int	step_init_textures(t_cub *cub)
 {
