@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/08 12:19:21 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 21:59:29 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 17:04:51 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 17:04:51 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,13 @@ void	cub_cleanup(t_cub *cub)
 		free(cub->mlx);
 		cub->mlx = NULL;
 	}
+}
+
+int	fail_and_cleanup(t_cub *cub, const char *msg)
+{
+	int	ret;
+
+	ret = fail(cub, msg);
+	cub_cleanup(cub);
+	return (ret);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:33:04 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/09 10:25:42 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 17:04:24 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 17:04:24 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ static int	step_init_textures(t_cub *cub)
 static int	step_init_sprites(t_cub *cub)
 {
 	if (sprites_load_all(cub))
-		return (fail(cub,
-				"Sprite textures failed to load"));
+		return (fail(cub, "Sprite textures failed to load"));
 	return (0);
 }
 
@@ -52,17 +51,21 @@ int	cub3d_run(const char *map_path)
 		return (fail(&cub,
 				"Out of memory while resolving map directory"));
 	if (step_parse(&cub, map_path))
-		return (-1);
+		return (fail_and_cleanup(&cub,
+				"Invalid scene file: bad identifiers or map format"));
 	if (step_init_mlx(&cub))
-		return (-1);
+		return (fail_and_cleanup(&cub,
+				"Failed to initialize graphics (MiniLibX/display)"));
 	if (step_init_textures(&cub))
-		return (-1);
+		return (fail_and_cleanup(&cub,
+				"Texture load failed: missing file or wrong size (64x64 required)"));
 	if (step_init_sprites(&cub))
-		return (-1);
+		return (fail_and_cleanup(&cub, "Sprite textures failed to load"));
 	if (step_init_player(&cub))
-		return (-1);
+		return (fail_and_cleanup(&cub,
+				"Invalid map: missing or multiple player spawn"));
 	if (step_set_hooks(&cub))
-		return (-1);
+		return (fail_and_cleanup(&cub, "Failed to install window hooks"));
 	mlx_loop(cub.mlx);
 	cub_cleanup(&cub);
 	return (0);

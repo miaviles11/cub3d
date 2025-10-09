@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures_utils_1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 12:15:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/09 10:30:52 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 17:02:29 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 17:02:29 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

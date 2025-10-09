@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   timing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 18:05:18 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 21:59:46 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 17:05:16 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 17:05:16 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

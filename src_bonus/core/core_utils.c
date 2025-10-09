@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/08 17:09:15 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/09 10:26:08 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 17:04:42 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 17:04:42 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

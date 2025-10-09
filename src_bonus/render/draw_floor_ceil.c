@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_floor_ceil.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 20:46:22 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 22:01:34 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 16:59:08 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 16:59:08 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

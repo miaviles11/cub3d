@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_subdiv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 19:50:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 22:01:13 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 17:00:51 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 17:00:51 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

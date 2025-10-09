@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:31:12 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 22:02:14 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 16:58:11 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 16:58:11 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
