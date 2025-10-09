@@ -62,10 +62,15 @@ void	free_sprites(t_cub *cub)
 	while (i < cub->sprites.count)
 	{
 		if (cub->sprites.sprites[i].texture_ids)
+		{
 			free(cub->sprites.sprites[i].texture_ids);
+			cub->sprites.sprites[i].texture_ids = NULL;
+		}
 		i++;
 	}
 	free(cub->sprites.sprites);
+	cub->sprites.sprites = NULL;
+	cub->sprites.count = 0;
 }
 
 void	free_weapon(t_cub *cub)
