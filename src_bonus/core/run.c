@@ -6,7 +6,7 @@
 /*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:04:24 by carlsanc          #+#    #+#             */
-/*   Updated: 2025/10/09 17:04:24 by carlsanc         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:04:24 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	cub3d_run(const char *map_path)
 				"Failed to initialize graphics (MiniLibX/display)"));
 	if (step_init_textures(&cub))
 		return (fail_and_cleanup(&cub,
-				"Texture load failed: missing file or wrong size (64x64 required)"));
+				"Texture load failed: missing file or wrong size"));
 	if (step_init_sprites(&cub))
 		return (fail_and_cleanup(&cub, "Sprite textures failed to load"));
 	if (step_init_player(&cub))

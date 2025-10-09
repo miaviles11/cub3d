@@ -41,11 +41,11 @@
 int		cub3d_run(const char *map_path);
 
 /*core_utils.c*/
-int	init_basics(t_cub *cub, const char *map_path);
-int	fail(t_cub *cub, const char *msg);
-int	step_init_mlx(t_cub *cub);
-int	step_parse(t_cub *cub, const char *map_path);
-int	fail_and_cleanup(t_cub *cub, const char *msg);
+int		init_basics(t_cub *cub, const char *map_path);
+int		fail(t_cub *cub, const char *msg);
+int		step_init_mlx(t_cub *cub);
+int		step_parse(t_cub *cub, const char *map_path);
+int		fail_and_cleanup(t_cub *cub, const char *msg);
 
 /* cleanup_utils.c */
 void	free_grid(char **grid, int height);
@@ -60,11 +60,9 @@ void	cleanup_memory_resources(t_cub *cub);
 void	cleanup_graphics_resources(t_cub *cub);
 
 /*loop.c*/
-int	loop_hook(void *param);
+int		loop_hook(void *param);
 
 /* victory_display.c */
-void	draw_rect_at(t_cub *cub, int x, int y, int w, int h);
-void	draw_border_at(t_cub *cub, int cx, int cy, int w, int h);
 void	draw_enemy_counter_box(t_cub *cub);
 void	draw_enemy_counter_text(t_cub *cub);
 
@@ -129,10 +127,10 @@ char	*skip_spaces(char *s);
 int		parse_int(const char **str, int *out);
 
 /*process_meta_helpers.c*/
-int	scan_header(t_cub *cub, t_list **node,
-	int *floor_set, int *ceil_set);
-int	validate_header_complete(t_cub *cub,
-	int node_exists, int floor_set, int ceil_set);
+int		scan_header(t_cub *cub, t_list **node,
+			int *floor_set, int *ceil_set);
+int		validate_header_complete(t_cub *cub,
+			int node_exists, int floor_set, int ceil_set);
 
 /* ========================================================================== */
 /*                          MAP UTILITIES                                     */
