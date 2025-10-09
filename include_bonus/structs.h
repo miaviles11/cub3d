@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 13:55:21 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 12:35:44 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/09 10:58:54 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,9 @@ typedef struct s_cub
 	int				door_flash_y;
 	int				mouse_x;
 	int				first_mouse;
+	int				enemies_alive;
+	int				victory;
+	int				victory_timer;
 }	t_cub;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:15:47 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 21:58:58 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:00:07 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	init_sprite_list(t_sprite_list *sprites)
 {
-	sprites->capacity = 10;
+	sprites->capacity = 20;
 	sprites->sprites = malloc(sizeof(t_sprite) * sprites->capacity);
 	if (!sprites->sprites)
 		return (-1);
@@ -73,5 +73,8 @@ int	parse_sprites(t_cub *cub)
 		}
 		y++;
 	}
+	cub->enemies_alive = cub->sprites.count;
+	cub->victory = 0;
+	cub->victory_timer = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/09 10:38:17 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:31:29 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ void	cub_cleanup(t_cub *cub);
 void	cleanup_game_resources(t_cub *cub);
 void	cleanup_memory_resources(t_cub *cub);
 void	cleanup_graphics_resources(t_cub *cub);
+
+/*loop.c*/
+int	loop_hook(void *param);
+
+/* victory_display.c */
+void	draw_rect_at(t_cub *cub, int x, int y, int w, int h);
+void	draw_border_at(t_cub *cub, int cx, int cy, int w, int h);
+void	draw_enemy_counter_box(t_cub *cub);
+void	draw_enemy_counter_text(t_cub *cub);
+
+/* victory_display_utils.c */
+void	draw_victory_box(t_cub *cub);
+void	draw_victory_text(t_cub *cub);
 
 /* ========================================================================== */
 /*                          INITIALIZATION                                    */

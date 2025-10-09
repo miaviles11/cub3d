@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:57:41 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 21:59:15 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:18:29 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ int	check_hit(t_cub *c, int mx, int my)
 	if (idx >= 0)
 	{
 		c->sprites.sprites[idx].loaded = 0;
+		c->enemies_alive--;
+		if (c->enemies_alive <= 0)
+			c->victory_timer = 20;
 		return (1);
 	}
 	if (c->map.grid[my][mx] == '1' || c->map.grid[my][mx] == 'D')
