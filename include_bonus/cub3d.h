@@ -92,7 +92,7 @@ int		is_blank_line(const char *s);
 
 /* init_textures_utils_2.c */
 void	*load_from_mapdir(t_cub *c, t_texture *tex,
-		const char *orig, char **out_path);
+			const char *orig, char **out_path);
 
 /* init_map.c */
 int		grow_grid(char ***grid, int *cap);
