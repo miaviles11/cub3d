@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:58:03 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 21:59:22 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/10 13:21:38 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_pixel_scaled(t_blit_data *bd, int x, int y)
 	int	ps;
 	int	sx;
 	int	sy;
-	int	color;
+	int	color;	
 
 	pd = bd->dst->line_len / 4;
 	ps = bd->src->line_len / 4;

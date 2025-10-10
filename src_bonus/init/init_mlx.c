@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:02:41 by carlsanc          #+#    #+#             */
-/*   Updated: 2025/10/09 17:02:41 by carlsanc         ###   ########.fr       */
+/*   Updated: 2025/10/10 13:11:27 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int	init_mlx(t_cub *cub)
 	cub->screen.bpp = 0;
 	cub->screen.line_len = 0;
 	cub->screen.endian = 0;
+	setup_mouse_deferred(cub);
 	return (0);
 }

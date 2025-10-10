@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_custom.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 16:57:34 by carlsanc          #+#    #+#             */
-/*   Updated: 2025/10/09 16:57:34 by carlsanc         ###   ########.fr       */
+/*   Updated: 2025/10/10 12:36:53 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include_bonus/cub3d.h"
 
 t_img	img_create(void *mlx, int w, int h)
 {

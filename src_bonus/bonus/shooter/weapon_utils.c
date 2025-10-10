@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 13:45:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 21:59:17 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/10 13:01:27 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	weapon_draw(t_cub *c)
 	frame = &c->weapon.idle;
 	if (c->weapon.fire_timer > 0)
 		frame = &c->weapon.fire;
+	ft_bzero(&bd, sizeof(t_blit_data));
 	bd.dst = &c->screen;
 	bd.src = frame;
 	bd.sw = frame->w * WEAPON_SCALE;
