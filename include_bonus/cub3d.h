@@ -6,7 +6,7 @@
 /*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:31:19 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/09 11:31:29 by miaviles         ###   ########.fr       */
+/*   Updated: 2025/10/10 11:31:40 by miaviles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@
 int		cub3d_run(const char *map_path);
 
 /*core_utils.c*/
-int	init_basics(t_cub *cub, const char *map_path);
-int	fail(t_cub *cub, const char *msg);
-int	step_init_mlx(t_cub *cub);
-int	step_parse(t_cub *cub, const char *map_path);
+int		init_basics(t_cub *cub, const char *map_path);
+int		fail(t_cub *cub, const char *msg);
+int		step_init_mlx(t_cub *cub);
+int		step_parse(t_cub *cub, const char *map_path);
 
 /* cleanup_utils.c */
 void	free_grid(char **grid, int height);
@@ -59,11 +59,9 @@ void	cleanup_memory_resources(t_cub *cub);
 void	cleanup_graphics_resources(t_cub *cub);
 
 /*loop.c*/
-int	loop_hook(void *param);
+int		loop_hook(void *param);
 
 /* victory_display.c */
-void	draw_rect_at(t_cub *cub, int x, int y, int w, int h);
-void	draw_border_at(t_cub *cub, int cx, int cy, int w, int h);
 void	draw_enemy_counter_box(t_cub *cub);
 void	draw_enemy_counter_text(t_cub *cub);
 
@@ -93,7 +91,7 @@ int		is_blank_line(const char *s);
 
 /* init_textures_utils_2.c */
 void	*load_from_mapdir(t_cub *c, t_texture *tex,
-		const char *orig, char **out_path);
+			const char *orig, char **out_path);
 
 /* init_map.c */
 int		grow_grid(char ***grid, int *cap);
@@ -128,10 +126,10 @@ char	*skip_spaces(char *s);
 int		parse_int(const char **str, int *out);
 
 /*process_meta_helpers.c*/
-int	scan_header(t_cub *cub, t_list **node,
-	int *floor_set, int *ceil_set);
-int	validate_header_complete(t_cub *cub,
-	int node_exists, int floor_set, int ceil_set);
+int		scan_header(t_cub *cub, t_list **node,
+			int *floor_set, int *ceil_set);
+int		validate_header_complete(t_cub *cub,
+			int node_exists, int floor_set, int ceil_set);
 
 /* ========================================================================== */
 /*                          MAP UTILITIES                                     */
