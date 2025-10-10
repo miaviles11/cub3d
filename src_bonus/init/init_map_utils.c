@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 12:30:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 22:00:04 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 17:02:57 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 17:02:57 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

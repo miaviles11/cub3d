@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_arr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 10:52:18 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 22:01:57 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 16:58:35 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 16:58:35 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

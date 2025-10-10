@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 00:00:00 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 22:01:40 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 16:58:58 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 16:58:58 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

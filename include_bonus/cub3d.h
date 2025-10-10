@@ -45,6 +45,10 @@ int		init_basics(t_cub *cub, const char *map_path);
 int		fail(t_cub *cub, const char *msg);
 int		step_init_mlx(t_cub *cub);
 int		step_parse(t_cub *cub, const char *map_path);
+<<<<<<< HEAD
+=======
+int		fail_and_cleanup(t_cub *cub, const char *msg);
+>>>>>>> b9eef9809303272c668bcb98ec6c746176cc8e5b
 
 /* cleanup_utils.c */
 void	free_grid(char **grid, int height);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_custom.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 10:52:49 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 22:02:02 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 16:57:34 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 16:57:34 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include_bonus/cub3d.h"
+#include "../../include/cub3d.h"
 
 t_img	img_create(void *mlx, int w, int h)
 {
@@ -19,11 +19,11 @@ t_img	img_create(void *mlx, int w, int h)
 	img.ptr = mlx_new_image(mlx, w, h);
 	if (!img.ptr)
 	{
-		memset(&img, 0, sizeof(t_img));
+		ft_bzero(&img, sizeof(t_img));
 		return (img);
 	}
-	img.data = (int *)mlx_get_data_addr(\
-		img.ptr, &img.bpp, &img.line_len, &img.endian);
+	img.data = (int *)mlx_get_data_addr(img.ptr, &img.bpp,
+			&img.line_len, &img.endian);
 	img.w = w;
 	img.h = h;
 	return (img);
@@ -34,7 +34,7 @@ void	img_destroy(void *mlx, t_img *img)
 	if (img && img->ptr)
 	{
 		mlx_destroy_image(mlx, img->ptr);
-		memset(img, 0, sizeof(t_img));
+		ft_bzero(img, sizeof(t_img));
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miaviles <miaviles@student.42madrid>       +#+  +:+       +#+        */
+/*   By: carlsanc <carlsanc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/08 12:18:56 by miaviles          #+#    #+#             */
-/*   Updated: 2025/10/08 21:59:26 by miaviles         ###   ########.fr       */
+/*   Created: 2025/10/09 17:04:56 by carlsanc          #+#    #+#             */
+/*   Updated: 2025/10/09 17:04:56 by carlsanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,15 @@ void	free_sprites(t_cub *cub)
 	while (i < cub->sprites.count)
 	{
 		if (cub->sprites.sprites[i].texture_ids)
+		{
 			free(cub->sprites.sprites[i].texture_ids);
+			cub->sprites.sprites[i].texture_ids = NULL;
+		}
 		i++;
 	}
 	free(cub->sprites.sprites);
+	cub->sprites.sprites = NULL;
+	cub->sprites.count = 0;
 }
 
 void	free_weapon(t_cub *cub)
